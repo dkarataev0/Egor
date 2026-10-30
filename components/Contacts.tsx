@@ -11,11 +11,10 @@ export default function Contacts() {
     { i: Icon.chat, t: "MAX", v: "Написать в MAX", h: company.max },
     { i: Icon.pin, t: "Адрес", v: company.address },
     { i: Icon.clock, t: "Часы работы", v: company.hours },
-  ];
+  ].filter((r) => r.v && r.h !== ""); // пустые поля в company.json скрываются
   return (
     <section id="contacts" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
-        <p className="eyebrow">Контакты</p>
         <h2 className="section-title mt-3">Свяжитесь с нами</h2>
       </Reveal>
       <div className="mt-10 grid gap-6 lg:grid-cols-2">

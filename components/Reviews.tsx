@@ -10,7 +10,6 @@ export default function Reviews() {
     <section id="reviews" className="bg-surface py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
-          <p className="eyebrow">Отзывы</p>
           <h2 className="section-title mt-3">Что говорят клиенты</h2>
         </Reveal>
         {list.length === 0 ? (

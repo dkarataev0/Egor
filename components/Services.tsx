@@ -4,7 +4,6 @@ import services from "@/data/services.json";
 import Reveal from "./Reveal";
 import Tilt from "./Tilt";
 import { useLead } from "./LeadProvider";
-import { Icon } from "./Icons";
 
 export const rub = (n: number) => new Intl.NumberFormat("ru-RU").format(n) + " ₽";
 
@@ -13,7 +12,6 @@ export default function Services() {
   return (
     <section id="services" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
-        <p className="eyebrow">Услуги</p>
         <h2 className="section-title mt-3 max-w-2xl">Что мы делаем из стекла</h2>
       </Reveal>
       <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -32,7 +30,7 @@ export default function Services() {
                     {s.unit && <span> {s.unit}</span>}
                   </p>
                   <button onClick={() => open({ serviceId: s.id })} className="btn btn-outline !min-h-11">
-                    Заказать <Icon.arrow className="size-4" />
+                    Заказать
                   </button>
                 </div>
               </div>

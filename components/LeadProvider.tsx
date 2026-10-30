@@ -41,7 +41,7 @@ export default function LeadProvider({ children }: { children: React.ReactNode }
         onClose={close}
         onClick={(e) => e.target === dialogRef.current && close()}
         aria-labelledby="lead-title"
-        className="m-auto w-[min(32rem,calc(100vw-1.5rem))] max-h-[92dvh] overflow-y-auto rounded-3xl bg-white p-0 shadow-2xl backdrop:bg-[#0b1a1d]/55 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(32rem,calc(100vw-1.5rem))] max-h-[92dvh] overflow-y-auto rounded-3xl bg-white p-0 shadow-2xl backdrop:bg-scrim/55 backdrop:backdrop-blur-sm"
       >
         {opts && (
           <div className="relative p-6 sm:p-8">

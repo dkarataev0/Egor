@@ -11,11 +11,11 @@ export default function Footer() {
           <p className="mt-3 max-w-xs text-sm text-ink-soft">Изделия из стекла в Краснодаре: перила, ограждения, окна и душевые кабины.</p>
         </div>
         <div className="text-sm text-ink-soft">
-          <a href={`tel:${company.phone}`} className="block font-display text-lg font-bold text-ink">{company.phoneDisplay}</a>
+          <a href={`tel:${company.phone}`} className="inline-flex min-h-11 items-center font-display text-lg font-bold text-ink">{company.phoneDisplay}</a>
           <p className="mt-1">{company.hours}</p>
         </div>
         <div className="text-sm text-ink-soft">
-          <Link href="/privacy" className="underline underline-offset-4 hover:text-teal">Политика конфиденциальности</Link>
+          <Link href="/privacy" className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-teal">Политика конфиденциальности</Link>
           <p className="mt-2">© {new Date().getFullYear()} АртВитраж</p>
         </div>
       </div>

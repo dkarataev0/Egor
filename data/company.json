@@ -5,11 +5,13 @@
   "phoneDisplay": "+7 978 119-88-21",
   "whatsapp": "https://wa.me/79781198821",
   "telegram": "https://t.me/+79781198821",
-  "max": "https://max.ru/",
-  "address": "Краснодар, адрес уточняется",
-  "addressTodo": true,
+  "max": "",
+  "address": "",
   "hours": "Пн–Пт: 9:00–18:00",
   "email": "",
-  "geo": { "lat": 45.0355, "lon": 38.9753 },
-  "_todo": "TODO: адрес, e-mail, ник Telegram и ссылка на MAX — заменить на реальные"
+  "geo": {
+    "lat": 45.0355,
+    "lon": 38.9753
+  },
+  "_todo": "TODO: заполнить address, email, ник Telegram (telegram) и ссылку MAX (max). Пустые поля на сайте скрываются."
 }
