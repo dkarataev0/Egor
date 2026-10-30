@@ -13,7 +13,7 @@ export default function MobileFab() {
           <a href={`tel:${company.phone}`} className="flex min-h-11 items-center gap-2 rounded-xl px-3 font-semibold">Позвонить</a>
           <a href={company.whatsapp} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2 rounded-xl px-3 font-semibold">WhatsApp</a>
           <a href={company.telegram} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2 rounded-xl px-3 font-semibold">Telegram</a>
-          <a href={company.max} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2 rounded-xl px-3 font-semibold">MAX</a>
+          {company.max && <a href={company.max} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2 rounded-xl px-3 font-semibold">MAX</a>}
         </div>
       )}
       <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="btn btn-primary fab-pulse !px-5 shadow-xl">

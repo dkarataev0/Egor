@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# АртВитраж — сайт компании
 
-## Getting Started
+Одностраничный сайт на **Next.js 15 (App Router) + Tailwind 4**: услуги, онлайн-калькулятор, галерея работ, заявки в Telegram и на e-mail, фоновая музыка.
 
-First, run the development server:
+Все данные лежат в `data/*.json`, поэтому тексты, услуги и цены меняются **без правки кода**. Всё, что помечено `TODO`, сейчас заглушка, и его нужно заменить реальными данными (чек-лист в конце).
+
+## Запуск
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env   # заполните ключи (см. ниже)
+npm run dev            # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Структура
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Путь | Что там |
+|---|---|
+| `app/page.tsx` | Сборка страницы из секций |
+| `app/api/lead/route.ts` | Приём заявок: валидация, honeypot, лимит, отправка |
+| `app/privacy/page.tsx` | Политика конфиденциальности (шаблон) |
+| `components/` | Секции сайта, форма, калькулятор, музыка |
+| `data/company.json` | Телефон, мессенджеры, адрес, часы работы |
+| `data/services.json` | **Все услуги** |
+| `data/calculator.json` | **Поля и цены калькулятора** |
+| `data/works.json`, `faq.json`, `advantages.json`, `steps.json`, `reviews.json` | Контент секций |
+| `lib/` | Логика: калькулятор, телефон, отправка, лимит запросов |
+| `public/images/`, `public/audio/bg.mp3`, `public/og.jpg` | Фото, музыка, картинка для соцсетей |
+| `.claude/skills/` | Скилы для Claude Code (дизайн и тестирование) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Как добавить услугу
 
-## Learn More
+1. Добавьте запись в `data/services.json`, и больше ничего не нужно править:
 
-To learn more about Next.js, take a look at the following resources:
+```json
+{
+  "id": "partitions",
+  "title": "Стеклянные перегородки",
+  "description": "Офисные и межкомнатные перегородки из закалённого стекла.",
+  "image": "/images/services/partitions.webp",
+  "priceFrom": 9000,
+  "unit": "за м²"
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Положите фото в `public/images/services/partitions.webp` (1200×800, WebP).
+3. Услуга сама появится в карточках, в выпадающем списке формы и в фильтре галереи.
+4. *(по желанию)* Добавьте её в калькулятор: запись с тем же `id` в `data/calculator.json`. Если записи нет, услуги в калькуляторе просто не будет.
+5. *(по желанию)* Добавьте фото работ в `data/works.json` с `"service": "partitions"`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`id` латиницей, без пробелов, он должен быть уникальным.
 
-## Deploy on Vercel
+## Калькулятор: цены и формулы
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Файл `data/calculator.json`. **Сейчас там ДЕМО-цены**, замените их на реальные.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```json
+"railings": {
+  "quantity": "area",      // что считаем: "length" (пог. м), "area" (м²) или "count" (шт.)
+  "unit": "м²",
+  "basePrice": 7500,       // ₽ за единицу
+  "minPrice": 20000,       // цена не ниже этой суммы
+  "fields": [ ... ]
+}
+```
+
+Формула: **цена = basePrice × количество × (произведение коэффициентов) + (доплаты)**, округляется до 100 ₽. Количество: для `area` это `ширина (или длина) × высота`.
+
+Типы полей (`fields`):
+
+| type | Параметры | Влияние на цену |
+|---|---|---|
+| `number` | `role` (`length` / `width` / `height`), `min`, `max`, `step`, `default`, `unit` | Задаёт количество |
+| `select` | `options[]`: `value`, `label`, и **один из** `coef`, `add`, `addPerUnit` | `coef` умножает цену, `add` добавляет ₽, `addPerUnit` добавляет ₽ за каждую единицу |
+| `checkbox` | `default`, `coef` / `add` / `addPerUnit` (применяются, когда галочка стоит) | как у `select` |
+
+Чтобы добавить тип стекла или фурнитуру, добавьте строку в `options`. Чтобы добавить поле, добавьте объект в `fields`. Кнопка «Отправить расчёт менеджеру» сама передаёт все выбранные параметры и сумму в заявку.
+
+## Заявки: Telegram и e-mail
+
+Все ключи только в `.env` (локально) и в **Vercel → Project → Settings → Environment Variables** (на сайте). Файл `.env` в `.gitignore`, в репозиторий не попадает.
+
+```
+TELEGRAM_BOT_TOKEN=   токен бота
+TELEGRAM_CHAT_ID=     id чата или группы
+MAIL_TO=              куда дублировать заявки
+SMTP_HOST=            например smtp.yandex.ru
+SMTP_PORT=465
+SMTP_USER=            логин почты
+SMTP_PASS=            пароль приложения
+MAIL_FROM=            от кого (обычно = SMTP_USER)
+```
+
+Работает любой из каналов по отдельности. Заявка считается отправленной, если сработал хотя бы один. Если не настроен ни один, форма покажет «Приём заявок ещё не настроен» и номер телефона.
+
+### Как создать Telegram-бота и узнать chat_id
+
+1. В Telegram откройте **@BotFather** и отправьте `/newbot`.
+2. Введите имя бота (например, «АртВитраж Заявки») и username, оканчивающийся на `bot` (например, `artvitrage_leads_bot`).
+3. BotFather пришлёт **токен** вида `123456:ABC-DEF…`. Это `TELEGRAM_BOT_TOKEN`. Никому его не показывайте.
+4. Откройте своего бота и нажмите **Start**. Если заявки нужны в группе, добавьте бота в группу и напишите там любое сообщение.
+5. Откройте в браузере `https://api.telegram.org/bot<ТОКЕН>/getUpdates`. В ответе найдите `"chat":{"id":123456789,…}`. Это `TELEGRAM_CHAT_ID`. У группы id отрицательный (`-100…`).
+6. Вставьте оба значения в `.env` и в Vercel, затем **Redeploy**.
+
+### Пароль для почты
+Для Яндекса и Mail.ru создайте **пароль приложения** в настройках безопасности почты и используйте его как `SMTP_PASS`. Основной пароль от ящика сюда вписывать не нужно.
+
+### Защита от спама
+- **Honeypot:** скрытое поле `website`, боты его заполняют и получают «успех», но ничего не отправляется.
+- **Лимит:** 5 заявок за 10 минут с одного IP (`lib/rate-limit.ts`). Лимит хранится в памяти сервера. Для высокой нагрузки замените на Upstash Redis.
+- **Валидация:** на клиенте и на сервере (`lib/lead.ts`). Фото: JPG, PNG или WebP до 5 МБ.
+
+## Яндекс.Метрика
+
+Укажите номер счётчика в `NEXT_PUBLIC_YM_ID`. Счётчик подключится сам. Цель **«Отправка заявки»** имеет идентификатор `lead_submit`: создайте в Метрике цель типа «JavaScript-событие» с этим идентификатором.
+
+## Фото: пути и размеры
+
+Сейчас там сгенерированные заглушки. Замените файлы с теми же именами (формат WebP или JPG, до ~300 КБ).
+
+| Файл | Размер | Где |
+|---|---|---|
+| `public/images/hero/hero.webp` | 2400×1350 | Первый экран (светлое фото стекла) |
+| `public/images/services/<id>.webp` | 1200×800 | Карточки услуг |
+| `public/images/works/work-N.webp` | 1200×900 | Галерея работ |
+| `public/og.jpg` | 1200×630 | Превью при отправке ссылки в соцсетях |
+| `public/logo.svg` | любой | Логотип (после добавления подключите его в `components/Header.tsx`, компонент `Logo`) |
+
+Подписи и привязка работ к услугам лежат в `data/works.json`. Заглушки можно пересоздать скриптом `node scripts/make-placeholders.mjs`.
+
+## Музыка
+
+Файл `public/audio/bg.mp3`. **Сейчас там сгенерированный ambient-трек без прав третьих лиц** (`python3 scripts/make-ambient.py`). Чтобы поставить свой, положите mp3 поверх (лучше до 1–2 МБ, зацикленный).
+
+Поведение: стартует после первого клика, нажатия клавиши или прокрутки, громкость 20%, плавное нарастание 2 с, повтор по кругу. Кнопка с эквалайзером в правом нижнем углу, выбор запоминается в `localStorage`. На мобильных по умолчанию выключено. Файл загружается только при первом запуске. Громкость и время нарастания меняются в `components/MusicToggle.tsx` (`VOLUME`, `FADE_IN_MS`).
+
+> Браузеры запрещают автозапуск звука. Если страницу только прокрутили, часть браузеров может отклонить запуск, тогда музыка включится с первого клика.
+
+## SEO
+
+Заголовок, описание, Open Graph, `sitemap.xml`, `robots.txt` и микроразметка `LocalBusiness` настроены (`app/layout.tsx`, `lib/site.ts`, `components/JsonLd.tsx`). Задайте реальный адрес сайта в `NEXT_PUBLIC_SITE_URL`. Адрес и e-mail из `data/company.json` попадают в разметку, пустые поля пропускаются. Добавьте сайт в Яндекс.Вебмастер и Google Search Console.
+
+## Деплой (Vercel)
+
+Репозиторий подключён к Vercel, и каждый push в `main` выкладывается автоматически. В настройках проекта должен быть пресет **Next.js**, добавьте переменные окружения из `.env.example`. Для своего домена: **Settings → Domains**.
+
+## Чек-лист: что заменить реальными данными
+
+- [ ] `data/company.json`: адрес, e-mail, ник Telegram, ссылка MAX (пустые поля скрываются)
+- [ ] `public/logo.svg` и компонент `Logo`
+- [ ] `app/privacy/page.tsx`: реквизиты оператора, сроки хранения, e-mail
+- [ ] `data/calculator.json`: реальные цены и коэффициенты
+- [ ] `data/services.json`: цены «от», описания
+- [ ] `data/faq.json`: сроки, зона выезда, гарантия
+- [ ] `data/reviews.json`: реальные отзывы (формат: `{"name": "...", "text": "...", "rating": 5}`)
+- [ ] Фото: hero, услуги, работы, `og.jpg`
+- [ ] `public/audio/bg.mp3` (по желанию)
+- [ ] Переменные Telegram, e-mail и Метрики; `NEXT_PUBLIC_SITE_URL`

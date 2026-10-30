@@ -37,9 +37,7 @@ export default function Gallery() {
   return (
     <section id="works" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
-        <p className="eyebrow">Наши работы</p>
         <h2 className="section-title mt-3">Примеры наших изделий</h2>
-        <p className="mt-3 text-sm text-ink-soft">TODO: сейчас показаны заглушки, замените их реальными фото объектов.</p>
       </Reveal>
       <div role="group" aria-label="Фильтр по услугам" className="-mx-4 mt-8 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
         {tabs.map((t) => (
@@ -47,7 +45,7 @@ export default function Gallery() {
             key={t.id}
             onClick={() => setFilter(t.id)}
             aria-pressed={filter === t.id}
-            className={`shrink-0 rounded-full border px-4 py-2.5 text-sm font-semibold transition ${filter === t.id ? "border-teal bg-teal text-white" : "border-line bg-white hover:border-teal"}`}
+            className={`shrink-0 rounded-full border min-h-11 px-4 text-sm font-semibold transition ${filter === t.id ? "border-teal bg-teal text-white" : "border-line bg-white hover:border-teal"}`}
           >
             {t.title}
           </button>

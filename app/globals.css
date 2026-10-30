@@ -12,6 +12,8 @@
   --brass: #b08d57;
   --brass-dark: #7d5f2a;
   --line: rgba(27, 36, 40, 0.1);
+  --scrim: #0b2327;
+  --glass-light: #8fe0e6;
 }
 
 @theme inline {
@@ -25,16 +27,22 @@
   --color-brass: var(--brass);
   --color-brass-dark: var(--brass-dark);
   --color-line: var(--line);
+  --color-scrim: var(--scrim);
+  --color-glass-light: var(--glass-light);
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-display: var(--font-manrope), system-ui, sans-serif;
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
+  scrollbar-color: var(--teal) var(--bg);
+  accent-color: var(--teal);
   scroll-padding-top: 5rem;
 }
 
 body {
+  overflow-x: clip;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
@@ -44,7 +52,12 @@ body {
 h1, h2, h3, .font-display {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
+
+::selection { background: var(--teal); color: #fff; }
+b, .font-display { font-variant-numeric: tabular-nums; }
 
 :focus-visible {
   outline: 3px solid var(--teal);
@@ -95,13 +108,6 @@ h1, h2, h3, .font-display {
   font-weight: 800;
   line-height: 1.1;
 }
-.eyebrow {
-  color: var(--brass-dark);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
 
 /* Плавное появление при скролле (без JS контент остаётся видимым) */
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
@@ -139,7 +145,9 @@ h1, h2, h3, .font-display {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .orb, .glint, .btn-glint::after, .scroll-cue span, .fab-pulse { animation: none; }
+  .eq-bar { animation: none; transform: scaleY(0.6); }
+  .btn:hover { transform: none; }
 }
 
 /* ───────────── Анимации ───────────── */
@@ -215,7 +223,6 @@ h1, h2, h3, .font-display {
   .tilt {
     transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
     transition: transform 0.25s ease-out, box-shadow 0.3s;
-    will-change: transform;
   }
   .tilt[data-active="false"] { transition: transform 0.6s cubic-bezier(0.2, 0.75, 0.2, 1), box-shadow 0.3s; }
   .tilt-glare {
@@ -227,6 +234,7 @@ h1, h2, h3, .font-display {
     background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.55), transparent 55%);
     transition: opacity 0.3s;
   }
+  .tilt[data-active="true"] { will-change: transform; }
   .tilt[data-active="true"] .tilt-glare { opacity: 1; }
 
   /* Этапы: линия прорисовывается, номера проявляются по очереди */
@@ -260,6 +268,8 @@ h1, h2, h3, .font-display {
     70%, 100% { box-shadow: 0 0 0 16px rgba(14, 124, 134, 0); }
   }
 }
+
+.eq-bar { animation: eq 1s ease-in-out infinite; }
 
 /* Индикатор прокрутки страницы (положение задаётся из JS) */
 .scroll-progress {

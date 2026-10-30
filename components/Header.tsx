@@ -18,12 +18,12 @@ const nav = [
 export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
   // TODO: заменить на public/logo.svg, когда будет готов логотип
   return (
-    <a href="#top" className={`flex items-center gap-2.5 font-display text-xl font-extrabold tracking-tight ${className}`} aria-label="АртВитраж — на главную">
+    <a href="#top" className={`flex min-h-11 items-center gap-2.5 font-display text-xl font-extrabold tracking-tight ${className}`} aria-label="АртВитраж — на главную">
       <span className="relative grid size-9 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-teal to-teal-dark text-white">
         <span className="absolute -left-2 top-0 h-full w-3 rotate-12 bg-white/30" />
         <span className="text-base">А</span>
       </span>
-      <span>Арт<span className={light ? "text-[#8fe0e6]" : "text-teal"}>Витраж</span></span>
+      <span>Арт<span className={light ? "text-glass-light" : "text-teal"}>Витраж</span></span>
     </a>
   );
 }
@@ -42,17 +42,17 @@ export default function Header() {
 
   const light = !scrolled && !menu;
   return (
-    <header className={`fixed inset-x-0 top-0 z-40 transition-all ${light ? "text-white" : "glass !rounded-none !border-x-0 !border-t-0 shadow-sm"}`}>
+    <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,color] ${light ? "text-white" : "glass !rounded-none !border-x-0 !border-t-0 shadow-sm"}`}>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Logo light={light} />
         <nav aria-label="Основное меню" className="hidden items-center gap-6 text-sm font-medium xl:flex">
           {nav.map(([h, t]) => (
-            <a key={h} href={h} className="rounded py-2 opacity-90 transition hover:underline hover:underline-offset-8 hover:opacity-100">{t}</a>
+            <a key={h} href={h} className="inline-flex min-h-11 items-center rounded opacity-90 transition hover:underline hover:underline-offset-8 hover:opacity-100">{t}</a>
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <a href={`tel:${company.phone}`} className="hidden font-display font-bold sm:block">{company.phoneDisplay}</a>
-          <button onClick={() => open()} className="btn btn-primary hidden !min-h-10 !px-5 sm:inline-flex">Заявка</button>
+          <a href={`tel:${company.phone}`} className="hidden min-h-11 items-center font-display font-bold sm:inline-flex">{company.phoneDisplay}</a>
+          <button onClick={() => open()} className="btn btn-primary !min-h-11 !px-5"><span className="sm:hidden">Заявка</span><span className="hidden sm:inline">Оставить заявку</span></button>
           <button
             onClick={() => setMenu((v) => !v)}
             className="grid size-11 place-items-center rounded-full xl:hidden"

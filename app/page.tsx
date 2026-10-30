@@ -11,6 +11,7 @@ import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 import MobileFab from "@/components/MobileFab";
 import ScrollProgress from "@/components/ScrollProgress";
+import MusicToggle from "@/components/MusicToggle";
 import LeadProvider from "@/components/LeadProvider";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileFab />
+      <MusicToggle />
     </LeadProvider>
   );
 }
