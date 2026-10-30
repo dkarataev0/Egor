@@ -146,6 +146,7 @@ b, .font-display { font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .orb, .glint, .btn-glint::after, .scroll-cue span, .fab-pulse { animation: none; }
+  .eq-bar { animation: none; transform: scaleY(0.6); }
   .btn:hover { transform: none; }
 }
 
@@ -267,6 +268,8 @@ b, .font-display { font-variant-numeric: tabular-nums; }
     70%, 100% { box-shadow: 0 0 0 16px rgba(14, 124, 134, 0); }
   }
 }
+
+.eq-bar { animation: eq 1s ease-in-out infinite; }
 
 /* Индикатор прокрутки страницы (положение задаётся из JS) */
 .scroll-progress {
