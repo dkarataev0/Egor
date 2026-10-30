@@ -58,6 +58,10 @@ export default function LeadForm({ serviceId, calc, onDone }: Props) {
   if (state === "done") {
     return (
       <div role="status" className="py-6 text-center">
+        <svg viewBox="0 0 52 52" className="mx-auto mb-4 size-16 text-teal" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <circle className="check-circle" cx="26" cy="26" r="23" />
+          <path className="check-mark" d="M15 27l8 8 15-17" />
+        </svg>
         <p className="font-display text-3xl font-extrabold">Спасибо!</p>
         <p className="mt-3 text-lg text-ink-soft">Перезвоним в течение 15 минут.</p>
         <p className="mt-1 text-sm text-ink-soft">В нерабочее время: {company.hours.toLowerCase()}, позвоним в начале рабочего дня.</p>

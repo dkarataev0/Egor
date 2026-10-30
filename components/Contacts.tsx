@@ -1,5 +1,6 @@
 import company from "@/data/company.json";
 import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 import { Icon } from "./Icons";
 
 export default function Contacts() {
@@ -15,13 +16,13 @@ export default function Contacts() {
   return (
     <section id="contacts" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
-        <h2 className="section-title mt-3">Свяжитесь с нами</h2>
+        <SectionTitle className="mt-3">Свяжитесь с нами</SectionTitle>
       </Reveal>
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         <Reveal>
-          <ul className="glass grid gap-1 rounded-3xl p-4 sm:p-6">
-            {rows.map(({ i: I, t, v, h }) => (
-              <li key={t}>
+          <ul className="glass stagger grid gap-1 rounded-3xl p-4 sm:p-6">
+            {rows.map(({ i: I, t, v, h }, idx) => (
+              <li key={t} style={{ "--i": idx } as React.CSSProperties}>
                 {h ? (
                   <a href={h} target={h.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="flex items-center gap-4 rounded-2xl p-3 transition hover:bg-teal-soft">
                     <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-teal text-white"><I className="size-5" /></span>
@@ -38,7 +39,7 @@ export default function Contacts() {
           </ul>
         </Reveal>
         <Reveal delay={100}>
-          <div className="h-80 overflow-hidden rounded-3xl border border-line lg:h-full lg:min-h-[28rem]">
+          <div className="clip-reveal h-80 overflow-hidden rounded-3xl border border-line lg:h-full lg:min-h-[28rem]">
             <iframe
               title="Карта: Краснодар"
               src={`https://yandex.ru/map-widget/v1/?ll=${lon}%2C${lat}&z=12&pt=${lon},${lat},pm2rdm`}

@@ -19,8 +19,14 @@ export default function Hero() {
         root.current?.style.setProperty("--py", String(Math.min(window.scrollY, window.innerHeight)));
       });
     };
+    const mouse = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      root.current?.style.setProperty("--px", String((e.clientX / window.innerWidth - 0.5).toFixed(3)));
+      root.current?.style.setProperty("--pz", String((e.clientY / window.innerHeight - 0.5).toFixed(3)));
+    };
     window.addEventListener("scroll", on, { passive: true });
-    return () => { window.removeEventListener("scroll", on); cancelAnimationFrame(raf); };
+    window.addEventListener("pointermove", mouse, { passive: true });
+    return () => { window.removeEventListener("scroll", on); window.removeEventListener("pointermove", mouse); cancelAnimationFrame(raf); };
   }, []);
 
   return (
@@ -28,7 +34,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-20" style={{ transform: "translate3d(0, calc(var(--py, 0) * 0.25px), 0) scale(1.08)" }}>
         <Image src="/images/hero/hero.webp" alt="Стеклянная конструкция с бликами света" fill priority sizes="100vw" className="object-cover" />
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true" style={{ transform: "translate3d(0, calc(var(--py, 0) * -0.12px), 0)" }}>
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true" style={{ transform: "translate3d(0, calc(var(--py, 0) * -0.12px), 0)", translate: "calc(var(--px, 0) * -36px) calc(var(--pz, 0) * -24px)" }}>
         <span className="orb" style={{ left: "58%", top: "12%", width: "26rem", height: "26rem" }} />
         <span className="orb" style={{ left: "78%", top: "52%", width: "18rem", height: "18rem", ["--delay" as string]: "-5s" }} />
         <span className="orb" style={{ left: "40%", top: "62%", width: "12rem", height: "12rem", ["--delay" as string]: "-9s" }} />
@@ -45,8 +51,8 @@ export default function Hero() {
           Перила, душевые кабины и окна из стекла под ключ в Краснодаре.
         </p>
         <div className="rise mt-9 flex flex-col gap-3 sm:flex-row" style={{ "--i": 3 } as React.CSSProperties}>
-          <a href="#calculator" className="btn btn-primary btn-glint">Рассчитать стоимость</a>
-          <button onClick={() => open()} className="btn btn-ghost">Оставить заявку</button>
+          <a href="#calculator" data-magnetic className="btn btn-primary btn-glint">Рассчитать стоимость</a>
+          <button onClick={() => open()} data-magnetic className="btn btn-ghost">Оставить заявку</button>
         </div>
       </div>
       <a href="#services" aria-label="Прокрутить к услугам" className="absolute bottom-6 left-1/2 hidden h-12 w-6 -translate-x-1/2 overflow-hidden rounded-full border border-white/60 sm:block">
