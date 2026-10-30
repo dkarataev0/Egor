@@ -15,8 +15,8 @@ export default function Advantages() {
             const I = Icon[a.icon as IconName];
             return (
               <Reveal as="li" key={a.title} delay={(i % 3) * 80}>
-                <div className="h-full rounded-3xl border border-line bg-bg p-7 transition duration-300 hover:-translate-y-1 hover:border-teal/40 hover:shadow-lg">
-                  <span className="grid size-12 place-items-center rounded-2xl bg-teal-soft text-teal-dark ring-1 ring-brass/40"><I className="size-6" /></span>
+                <div className="group h-full rounded-3xl border border-line bg-bg p-7 transition duration-300 hover:-translate-y-1 hover:border-teal/40 hover:shadow-lg">
+                  <span className="icon-pop grid size-12 place-items-center rounded-2xl bg-teal-soft text-teal-dark ring-1 ring-brass/40"><I className="size-6" /></span>
                   <h3 className="mt-5 text-lg font-extrabold">{a.title}</h3>
                   <p className="mt-2 text-ink-soft">{a.text}</p>
                 </div>

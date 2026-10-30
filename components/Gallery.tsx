@@ -55,7 +55,7 @@ export default function Gallery() {
       </div>
       <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
         {list.map((w, i) => (
-          <li key={w.id}>
+          <li key={`${filter}-${w.id}`} className="pop-in" style={{ "--i": i } as React.CSSProperties}>
             <button onClick={() => setIdx(i)} className="shine group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl" aria-label={`Открыть фото: ${w.title}`}>
               <Image src={w.image} alt={w.title} fill sizes="(min-width:1024px) 33vw, 50vw" loading="lazy" className="object-cover transition duration-700 group-hover:scale-105" />
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 pt-10 text-left text-sm font-semibold text-white">{w.title}</span>
@@ -68,7 +68,7 @@ export default function Gallery() {
         {cur && (
           <figure className="relative">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-black">
-              <Image src={cur.image} alt={cur.title} fill sizes="96vw" className="object-contain" />
+              <Image src={cur.image} alt={cur.title} fill sizes="96vw" className="lb-img object-contain" key={cur.image} />
             </div>
             <figcaption className="mt-3 text-center text-white">{cur.title}</figcaption>
             <button onClick={() => setIdx(null)} aria-label="Закрыть" className="absolute right-2 top-2 grid size-11 place-items-center rounded-full bg-white/90"><Icon.close /></button>

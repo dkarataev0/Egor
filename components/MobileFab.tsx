@@ -16,7 +16,7 @@ export default function MobileFab() {
           <a href={company.max} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-center gap-2 rounded-xl px-3 font-semibold">MAX</a>
         </div>
       )}
-      <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="btn btn-primary !px-5 shadow-xl">
+      <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="btn btn-primary fab-pulse !px-5 shadow-xl">
         {open ? <Icon.close className="size-5" /> : <Icon.phone className="size-5" />}
         {open ? "Закрыть" : "Позвонить / Написать"}
       </button>

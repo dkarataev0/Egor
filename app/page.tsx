@@ -10,11 +10,13 @@ import Faq from "@/components/Faq";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
 import MobileFab from "@/components/MobileFab";
+import ScrollProgress from "@/components/ScrollProgress";
 import LeadProvider from "@/components/LeadProvider";
 
 export default function Home() {
   return (
     <LeadProvider>
+      <ScrollProgress />
       <Header />
       <main>
         <Hero />

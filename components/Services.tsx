@@ -2,6 +2,7 @@
 import Image from "next/image";
 import services from "@/data/services.json";
 import Reveal from "./Reveal";
+import Tilt from "./Tilt";
 import { useLead } from "./LeadProvider";
 import { Icon } from "./Icons";
 
@@ -18,7 +19,7 @@ export default function Services() {
       <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (
           <Reveal as="li" key={s.id} delay={i * 80}>
-            <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_10px_30px_-18px_rgba(14,124,134,0.4)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(14,124,134,0.55)]">
+            <Tilt className="h-full rounded-3xl"><article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_10px_30px_-18px_rgba(14,124,134,0.4)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(14,124,134,0.55)]">
               <div className="shine relative aspect-[3/2] overflow-hidden">
                 <Image src={s.image} alt={s.title} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />
               </div>
@@ -35,7 +36,7 @@ export default function Services() {
                   </button>
                 </div>
               </div>
-            </article>
+            </article></Tilt>
           </Reveal>
         ))}
       </ul>
