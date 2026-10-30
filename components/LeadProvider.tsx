@@ -50,6 +50,9 @@ export default function LeadProvider({ children }: { children: React.ReactNode }
             </button>
             <h2 id="lead-title" className="pr-10 text-2xl font-extrabold">Оставить заявку</h2>
             <p className="mb-5 mt-1 text-sm text-ink-soft">Перезвоним в течение 15 минут в рабочее время.</p>
+            {opts.calc && (
+              <p className="mb-4 rounded-xl bg-teal-soft p-3 text-sm">Расчёт приложим к заявке: <b>от {new Intl.NumberFormat("ru-RU").format(Number(opts.calc.price))} ₽</b></p>
+            )}
             <LeadForm serviceId={opts.serviceId} calc={opts.calc} onDone={close} />
           </div>
         )}

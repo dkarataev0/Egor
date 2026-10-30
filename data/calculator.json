@@ -1,0 +1,313 @@
+{
+  "_todo": "TODO: ДЕМО-ЦЕНЫ и коэффициенты. Замените на реальные. См. README, раздел «Калькулятор».",
+  "services": {
+    "railings": {
+      "quantity": "area",
+      "unit": "м²",
+      "basePrice": 7500,
+      "minPrice": 20000,
+      "fields": [
+        {
+          "id": "length",
+          "role": "length",
+          "type": "number",
+          "label": "Длина ограждения",
+          "unit": "м",
+          "min": 0.5,
+          "max": 100,
+          "step": 0.1,
+          "default": 5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.8,
+          "max": 1.5,
+          "step": 0.05,
+          "default": 1
+        },
+        {
+          "id": "glassType",
+          "type": "select",
+          "label": "Тип стекла",
+          "default": "tempered",
+          "options": [
+            {
+              "value": "tempered",
+              "label": "Закалённое",
+              "coef": 1
+            },
+            {
+              "value": "triplex",
+              "label": "Триплекс (многослойное)",
+              "coef": 1.35
+            }
+          ]
+        },
+        {
+          "id": "thickness",
+          "type": "select",
+          "label": "Толщина стекла",
+          "default": "10",
+          "options": [
+            {
+              "value": "8",
+              "label": "8 мм",
+              "coef": 1
+            },
+            {
+              "value": "10",
+              "label": "10 мм",
+              "coef": 1.12
+            },
+            {
+              "value": "12",
+              "label": "12 мм",
+              "coef": 1.25
+            }
+          ]
+        },
+        {
+          "id": "hardware",
+          "type": "select",
+          "label": "Фурнитура",
+          "default": "steel",
+          "options": [
+            {
+              "value": "steel",
+              "label": "Нержавеющая сталь",
+              "addPerUnit": 2500
+            },
+            {
+              "value": "brass",
+              "label": "Латунь",
+              "addPerUnit": 4200
+            },
+            {
+              "value": "point",
+              "label": "Точечное крепление",
+              "addPerUnit": 5200
+            }
+          ]
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Монтаж",
+          "default": true,
+          "addPerUnit": 1800
+        }
+      ]
+    },
+    "windows": {
+      "quantity": "area",
+      "unit": "м²",
+      "basePrice": 6500,
+      "minPrice": 15000,
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Ширина",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 3.5,
+          "step": 0.1,
+          "default": 1.4
+        },
+        {
+          "id": "glassType",
+          "type": "select",
+          "label": "Остекление",
+          "default": "double",
+          "options": [
+            {
+              "value": "cold",
+              "label": "Холодное (одинарное стекло)",
+              "coef": 0.7
+            },
+            {
+              "value": "double",
+              "label": "Двухкамерный стеклопакет",
+              "coef": 1
+            },
+            {
+              "value": "energy",
+              "label": "Энергосберегающий стеклопакет",
+              "coef": 1.25
+            }
+          ]
+        },
+        {
+          "id": "thickness",
+          "type": "select",
+          "label": "Толщина стекла",
+          "default": "4",
+          "options": [
+            {
+              "value": "4",
+              "label": "4 мм",
+              "coef": 1
+            },
+            {
+              "value": "6",
+              "label": "6 мм",
+              "coef": 1.15
+            }
+          ]
+        },
+        {
+          "id": "hardware",
+          "type": "select",
+          "label": "Открывание",
+          "default": "swing",
+          "options": [
+            {
+              "value": "fixed",
+              "label": "Глухое",
+              "add": 0
+            },
+            {
+              "value": "swing",
+              "label": "Поворотно-откидное",
+              "add": 6500
+            },
+            {
+              "value": "slide",
+              "label": "Раздвижное",
+              "add": 9500
+            }
+          ]
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Монтаж",
+          "default": true,
+          "addPerUnit": 1500
+        }
+      ]
+    },
+    "showers": {
+      "quantity": "area",
+      "unit": "м²",
+      "basePrice": 14000,
+      "minPrice": 18000,
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Ширина",
+          "unit": "м",
+          "min": 0.6,
+          "max": 2.5,
+          "step": 0.05,
+          "default": 0.9
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 1.6,
+          "max": 2.4,
+          "step": 0.05,
+          "default": 2
+        },
+        {
+          "id": "glassType",
+          "type": "select",
+          "label": "Стекло",
+          "default": "clear",
+          "options": [
+            {
+              "value": "clear",
+              "label": "Прозрачное",
+              "coef": 1
+            },
+            {
+              "value": "tinted",
+              "label": "Тонированное",
+              "coef": 1.15
+            },
+            {
+              "value": "matte",
+              "label": "Матовое",
+              "coef": 1.2
+            }
+          ]
+        },
+        {
+          "id": "thickness",
+          "type": "select",
+          "label": "Толщина стекла",
+          "default": "8",
+          "options": [
+            {
+              "value": "6",
+              "label": "6 мм",
+              "coef": 1
+            },
+            {
+              "value": "8",
+              "label": "8 мм",
+              "coef": 1.12
+            },
+            {
+              "value": "10",
+              "label": "10 мм",
+              "coef": 1.25
+            }
+          ]
+        },
+        {
+          "id": "hardware",
+          "type": "select",
+          "label": "Дверь и фурнитура",
+          "default": "swing",
+          "options": [
+            {
+              "value": "fixed",
+              "label": "Неподвижная перегородка",
+              "add": 0
+            },
+            {
+              "value": "swing",
+              "label": "Распашная дверь",
+              "add": 7000
+            },
+            {
+              "value": "slide",
+              "label": "Раздвижная дверь",
+              "add": 11000
+            }
+          ]
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Монтаж",
+          "default": true,
+          "add": 4500
+        }
+      ]
+    }
+  }
+}
