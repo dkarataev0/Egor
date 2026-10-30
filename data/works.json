@@ -1,0 +1,8 @@
+[
+  { "id": 1, "service": "railings", "title": "Ограждение лестницы", "image": "/images/works/work-1.webp" },
+  { "id": 2, "service": "showers", "title": "Душевая кабина", "image": "/images/works/work-2.webp" },
+  { "id": 3, "service": "windows", "title": "Панорамное остекление", "image": "/images/works/work-3.webp" },
+  { "id": 4, "service": "railings", "title": "Ограждение террасы", "image": "/images/works/work-4.webp" },
+  { "id": 5, "service": "showers", "title": "Душевая перегородка", "image": "/images/works/work-5.webp" },
+  { "id": 6, "service": "windows", "title": "Остекление веранды", "image": "/images/works/work-6.webp" }
+]
