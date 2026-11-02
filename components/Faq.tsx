@@ -28,7 +28,7 @@ export default function Faq() {
                     className="flex w-full items-center justify-between gap-4 p-5 text-left font-display text-lg font-bold"
                   >
                     {f.q}
-                    <Icon.plus className={`size-5 shrink-0 text-gold transition-transform ${on ? "rotate-45" : ""}`} />
+                    <Icon.plus className={`size-5 shrink-0 text-gold-text transition-transform ${on ? "rotate-45" : ""}`} />
                   </button>
                 </h3>
                 <div id={`faq-${i}`} role="region" aria-labelledby={`faq-btn-${i}`} className={`grid transition-[grid-template-rows] duration-300 ${on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>

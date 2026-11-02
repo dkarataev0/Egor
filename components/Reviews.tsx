@@ -22,7 +22,7 @@ export default function Reviews() {
           <ul className="mt-10 grid gap-5 md:grid-cols-3">
             {list.map((r) => (
               <li key={r.name} className="rounded-3xl border border-line bg-bg p-7">
-                <div className="flex gap-0.5 text-brass" aria-label={`Оценка ${r.rating ?? 5} из 5`}>
+                <div className="flex gap-0.5 text-gold-text" aria-label={`Оценка ${r.rating ?? 5} из 5`}>
                   {Array.from({ length: r.rating ?? 5 }).map((_, i) => <Icon.star key={i} className="size-5 fill-current" />)}
                 </div>
                 <p className="mt-4">{r.text}</p>

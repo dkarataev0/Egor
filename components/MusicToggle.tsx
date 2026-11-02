@@ -104,7 +104,7 @@ export default function MusicToggle() {
       aria-pressed={playing}
       aria-label={playing ? "Выключить фоновую музыку" : "Включить фоновую музыку"}
       title={playing ? "Выключить музыку" : "Включить музыку"}
-      className="glass fixed bottom-4 right-4 z-30 grid size-12 place-items-center rounded-full text-gold-light transition hover:scale-105"
+      className="glass fixed bottom-4 right-4 z-30 grid size-12 place-items-center rounded-full text-gold-text transition hover:scale-105"
       data-enabled={enabled}
     >
       {playing ? (

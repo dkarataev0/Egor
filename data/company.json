@@ -13,5 +13,6 @@
     "lat": 45.0355,
     "lon": 38.9753
   },
-  "_todo": "TODO: заполнить address, email, ник Telegram (telegram) и ссылку MAX (max). Пустые поля на сайте скрываются."
+  "_todo": "TODO: заполнить address, email, ник Telegram (telegram) и ссылку MAX (max). Пустые поля на сайте скрываются.",
+  "heroVideo": ""
 }

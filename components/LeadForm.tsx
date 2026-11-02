@@ -58,7 +58,7 @@ export default function LeadForm({ serviceId, calc, onDone }: Props) {
   if (state === "done") {
     return (
       <div role="status" className="py-6 text-center">
-        <svg viewBox="0 0 52 52" className="mx-auto mb-4 size-16 text-gold" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <svg viewBox="0 0 52 52" className="mx-auto mb-4 size-16 text-gold-text" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
           <circle className="check-circle" cx="26" cy="26" r="23" />
           <path className="check-mark" d="M15 27l8 8 15-17" />
         </svg>
@@ -101,13 +101,13 @@ export default function LeadForm({ serviceId, calc, onDone }: Props) {
         <textarea className={field} name="comment" rows={3} maxLength={1500} />
       </label>
       <label className="grid gap-1.5 text-sm font-medium">Фото объекта <span className="font-normal text-ink-soft">(необязательно, до 5 МБ)</span>
-        <input className={`${field} file:mr-3 file:rounded-full file:border-0 file:bg-gold-soft file:px-4 file:py-2 file:font-semibold file:text-gold-light`} name="photo" type="file" accept="image/jpeg,image/png,image/webp" {...aria("photo")} />
+        <input className={`${field} file:mr-3 file:rounded-full file:border-0 file:bg-gold-soft file:px-4 file:py-2 file:font-semibold file:text-gold-text`} name="photo" type="file" accept="image/jpeg,image/png,image/webp" {...aria("photo")} />
         {err("photo")}
       </label>
       <div className="grid gap-1.5">
         <label className="flex items-start gap-3 text-sm">
           <input type="checkbox" name="consent" value="true" className="mt-0.5 size-5 shrink-0" required {...aria("consent")} />
-          <span>Согласен на обработку персональных данных в соответствии с <Link href="/privacy" target="_blank" className="text-gold-light underline underline-offset-2">политикой конфиденциальности</Link></span>
+          <span>Согласен на обработку персональных данных в соответствии с <Link href="/privacy" target="_blank" className="text-gold-text underline underline-offset-2">политикой конфиденциальности</Link></span>
         </label>
         {err("consent")}
       </div>

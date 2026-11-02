@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import company from "@/data/company.json";
 import { useLead } from "./LeadProvider";
 import HeroParticles from "./HeroParticles";
+import HeroVideo from "./HeroVideo";
 
 export default function Hero() {
   const { open } = useLead();
@@ -34,6 +35,7 @@ export default function Hero() {
     <section ref={root} id="top" className="relative isolate flex min-h-[100svh] items-center overflow-hidden">
       <div className="absolute inset-0 -z-20" style={{ transform: "translate3d(0, calc(var(--py, 0) * 0.25px), 0) scale(1.08)" }}>
         <Image src="/images/hero/hero.webp" alt="Стеклянная конструкция с бликами света" fill priority sizes="100vw" className="object-cover" />
+        {company.heroVideo && <HeroVideo src={company.heroVideo} />}
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true" style={{ transform: "translate3d(0, calc(var(--py, 0) * -0.12px), 0)", translate: "calc(var(--px, 0) * -36px) calc(var(--pz, 0) * -24px)" }}>
         <span className="orb" style={{ left: "58%", top: "12%", width: "26rem", height: "26rem" }} />
