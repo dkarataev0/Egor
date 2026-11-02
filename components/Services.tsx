@@ -18,7 +18,7 @@ export default function Services() {
       <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (
           <Reveal as="li" key={s.id} delay={i * 80}>
-            <Tilt className="h-full rounded-3xl"><article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_10px_30px_-18px_rgba(0,0,0,0.7)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(201,163,94,0.35)]">
+            <Tilt className="h-full rounded-3xl"><article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_10px_30px_-18px_var(--shadow)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-20px_rgba(201,163,94,0.35)]">
               <div className="shine relative aspect-[3/2] overflow-hidden">
                 <div data-parallax="14" className="absolute inset-x-0 -inset-y-[7%]">
                   <Image src={s.image} alt={s.title} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-105" />

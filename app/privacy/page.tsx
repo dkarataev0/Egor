@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Privacy() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <Link href="/" className="text-gold underline underline-offset-4">← На главную</Link>
+      <Link href="/" className="text-gold-text underline underline-offset-4">← На главную</Link>
       <h1 className="mt-6 text-3xl font-extrabold sm:text-4xl">Политика конфиденциальности</h1>
       <div className="mt-8 grid gap-6 leading-relaxed text-ink-soft">
         <p><b className="text-ink">Оператор персональных данных:</b> [TODO: наименование, ИНН, ОГРН, адрес].</p>

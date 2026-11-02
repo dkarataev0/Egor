@@ -1,8 +1,10 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import company from "@/data/company.json";
 import { Icon } from "./Icons";
 import { useLead } from "./LeadProvider";
+import ThemeToggle from "./ThemeToggle";
 
 const nav = [
   ["#services", "Услуги"],
@@ -16,14 +18,11 @@ const nav = [
 ];
 
 export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
-  // TODO: заменить на public/logo.svg, когда будет готов логотип
+  // Знак лежит в public/logo-mark.svg, замените файл на свой логотип
   return (
     <a href="#top" className={`flex min-h-11 items-center gap-2.5 font-display text-xl font-extrabold tracking-tight ${className}`} aria-label="АртВитраж — на главную">
-      <span className="relative grid size-9 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-gold to-gold-deep text-on-gold">
-        <span className="absolute -left-2 top-0 h-full w-3 rotate-12 bg-white/30" />
-        <span className="text-base">А</span>
-      </span>
-      <span>Арт<span className={light ? "text-gold-light" : "text-gold"}>Витраж</span></span>
+      <Image src="/logo-mark.svg" width={36} height={36} alt="" unoptimized className="size-9" />
+      <span>Арт<span className={light ? "text-gold-light" : "text-gold-text"}>Витраж</span></span>
     </a>
   );
 }
@@ -76,6 +75,7 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
+          <span className="hidden sm:block"><ThemeToggle /></span>
           <a href={`tel:${company.phone}`} className="hidden min-h-11 items-center font-display font-bold sm:inline-flex">{company.phoneDisplay}</a>
           <button onClick={() => open()} className="btn btn-primary !min-h-11 !px-5"><span className="sm:hidden">Заявка</span><span className="hidden sm:inline">Оставить заявку</span></button>
           <button
@@ -90,7 +90,7 @@ export default function Header() {
         </div>
       </div>
       {menu && (
-        <nav id="mobile-menu" aria-label="Мобильное меню" className="border-t border-line px-4 pb-5 pt-2 xl:hidden">
+        <nav id="mobile-menu" aria-label="Мобильное меню" className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-surface px-4 pb-5 pt-2 xl:hidden">
           <ul className="grid">
             {nav.map(([h, t]) => (
               <li key={h}>
@@ -98,6 +98,10 @@ export default function Header() {
               </li>
             ))}
           </ul>
+          <div className="mt-3 flex items-center justify-between border-b border-line/60 pb-1 text-lg font-medium sm:hidden">
+            <span>Тема оформления</span>
+            <ThemeToggle />
+          </div>
           <button onClick={() => { setMenu(false); open(); }} className="btn btn-primary mt-4 w-full">Оставить заявку</button>
         </nav>
       )}

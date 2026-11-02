@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import works from "@/data/works.json";
 import services from "@/data/services.json";
 import Reveal from "./Reveal";
+import BeforeAfter from "./BeforeAfter";
 import SectionTitle from "./SectionTitle";
 import { Icon } from "./Icons";
 
@@ -62,6 +63,8 @@ export default function Gallery() {
           </Reveal>
         ))}
       </ul>
+
+      <BeforeAfter />
 
       <dialog ref={dlg} onClose={() => setIdx(null)} onClick={(e) => e.target === dlg.current && setIdx(null)} aria-label="Просмотр фото" className="m-auto max-h-[92dvh] w-[min(64rem,96vw)] overflow-visible bg-transparent p-0 backdrop:bg-black/80">
         {cur && (

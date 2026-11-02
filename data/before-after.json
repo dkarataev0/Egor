@@ -1,0 +1,10 @@
+[
+  {
+    "id": "showers-1",
+    "title": "Душевая из стекла",
+    "service": "showers",
+    "before": "/images/before-after/showers-before.webp",
+    "after": "/images/before-after/showers-after.webp",
+    "_todo": "TODO: заглушка. Замените фото «до» и «после» одного объекта (одинаковый ракурс и размер)"
+  }
+]

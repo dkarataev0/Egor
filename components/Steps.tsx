@@ -15,7 +15,7 @@ export default function Steps() {
             <li key={s.title} className="relative">
               <span aria-hidden="true" className="step-dot absolute -top-9 left-7 hidden size-3.5 rounded-full bg-brass ring-4 ring-bg md:block" style={{ "--i": i } as React.CSSProperties} />
               <div data-spotlight className="spotlight h-full rounded-3xl bg-gradient-to-br from-surface to-gold-soft p-7 ring-1 ring-line transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <span className="font-display text-5xl font-extrabold text-brass-dark">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-display text-5xl font-extrabold text-gold-text">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 text-xl font-extrabold">{s.title}</h3>
                 <p className="mt-2 text-ink-soft">{s.text}</p>
               </div>

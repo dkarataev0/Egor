@@ -11,12 +11,34 @@
   --gold-deep: #a47f38;
   --gold-light: #e3c688;
   --gold-soft: rgba(201, 163, 94, 0.12);
+  --gold-text: #e3c688;
   --on-gold: #14191c;
   --brass: #c9a35e;
   --brass-dark: #e3c688;
   --line: rgba(237, 232, 220, 0.12);
   --scrim: #0a0e10;
+  --shadow: rgba(0, 0, 0, 0.7);
+  --glass-bg: rgba(26, 34, 38, 0.66);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-shadow: rgba(0, 0, 0, 0.6);
 }
+
+/* Светлая тема: переключается кнопкой в шапке, выбор хранится в localStorage */
+:root[data-theme="light"] {
+  --bg: #f6f3ec;
+  --surface: #ffffff;
+  --surface-2: #f0ece3;
+  --ink: #1b2428;
+  --ink-soft: #55636a;
+  --gold-text: #8a6420;
+  --gold-soft: rgba(164, 127, 56, 0.12);
+  --line: rgba(27, 36, 40, 0.13);
+  --shadow: rgba(27, 36, 40, 0.28);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(27, 36, 40, 0.08);
+  --glass-shadow: rgba(27, 36, 40, 0.18);
+}
+:root[data-theme="light"] { color-scheme: light; }
 
 @theme inline {
   --color-bg: var(--bg);
@@ -28,6 +50,7 @@
   --color-gold-deep: var(--gold-deep);
   --color-gold-light: var(--gold-light);
   --color-gold-soft: var(--gold-soft);
+  --color-gold-text: var(--gold-text);
   --color-on-gold: var(--on-gold);
   --color-brass: var(--brass);
   --color-brass-dark: var(--brass-dark);
@@ -65,17 +88,17 @@ h1, h2, h3, .font-display {
 b, .font-display { font-variant-numeric: tabular-nums; }
 
 :focus-visible {
-  outline: 3px solid var(--gold-light);
+  outline: 3px solid var(--gold-text);
   outline-offset: 3px;
   border-radius: 6px;
 }
 
 .glass {
-  background: rgba(26, 34, 38, 0.66);
+  background: var(--glass-bg);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 0 12px 40px -14px rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 40px -14px var(--glass-shadow);
 }
 
 .btn {
@@ -99,13 +122,13 @@ b, .font-display { font-variant-numeric: tabular-nums; }
 }
 .btn-ghost {
   background: rgba(255, 255, 255, 0.08);
-  color: var(--ink);
+  color: #fff; /* стоит поверх тёмного hero в обеих темах */
   border: 1px solid rgba(255, 255, 255, 0.22);
   backdrop-filter: blur(8px);
 }
 .btn-outline {
-  border: 1.5px solid var(--gold);
-  color: var(--gold-light);
+  border: 1.5px solid var(--gold-text);
+  color: var(--gold-text);
   background: linear-gradient(var(--gold), var(--gold)) no-repeat left center / 0% 100%;
   transition: background-size 0.4s cubic-bezier(0.2, 0.75, 0.2, 1), color 0.3s, transform 0.2s, box-shadow 0.2s;
 }
@@ -319,6 +342,13 @@ b, .font-display { font-variant-numeric: tabular-nums; }
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
   .reveal.scale-reveal { transform: translateY(26px) scale(0.93); }
   .reveal.scale-reveal[data-in="true"] { transform: none; }
+}
+
+/* Плавная смена темы (класс ставится на время переключения) */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-anim, .theme-anim *, .theme-anim *::before {
+    transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease, fill 0.45s ease, stroke 0.45s ease, box-shadow 0.45s ease !important;
+  }
 }
 
 /* Индикатор прокрутки страницы (положение задаётся из JS) */

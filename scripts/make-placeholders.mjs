@@ -39,12 +39,16 @@ const jobs = [
   ["services/railings", 1200, 800, 2, 38],
   ["services/windows", 1200, 800, 3, 44],
   ["services/showers", 1200, 800, 4, 34],
+  ["before-after/showers-before", 1200, 800, 31, 200, "before"],
+  ["before-after/showers-after", 1200, 800, 31, 40],
   ...[1, 2, 3, 4, 5, 6].map((n) => [`works/work-${n}`, 1200, n % 2 ? 900 : 1200, 10 + n, 32 + n * 3]),
 ];
 
-for (const d of ["hero", "services", "works"]) mkdirSync(`public/images/${d}`, { recursive: true });
-for (const [name, w, h, seed, hue] of jobs) {
+for (const d of ["hero", "services", "works", "before-after"]) mkdirSync(`public/images/${d}`, { recursive: true });
+for (const [name, w, h, seed, hue, mode] of jobs) {
   const buf = Buffer.from(svg(w, h, seed, hue));
-  await sharp(buf).webp({ quality: 78 }).toFile(`public/images/${name}.webp`);
+  let img = sharp(buf);
+  if (mode === "before") img = img.modulate({ saturation: 0.08, brightness: 0.55 }); // «до»: тусклая серая версия
+  await img.webp({ quality: 78 }).toFile(`public/images/${name}.webp`);
   console.log("ok", name);
 }

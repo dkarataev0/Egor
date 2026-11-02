@@ -15,7 +15,7 @@ export default function Footer() {
           <p className="mt-1">{company.hours}</p>
         </div>
         <div className="text-sm text-ink-soft">
-          <Link href="/privacy" className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-gold">Политика конфиденциальности</Link>
+          <Link href="/privacy" className="inline-flex min-h-11 items-center underline underline-offset-4 hover:text-gold-text">Политика конфиденциальности</Link>
           <p className="mt-2">© {new Date().getFullYear()} АртВитраж</p>
         </div>
       </div>
