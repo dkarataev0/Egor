@@ -1,0 +1,151 @@
+{
+ "viewBox": [
+  0,
+  78,
+  332,
+  146
+ ],
+ "exportScale": 4,
+ "colors": {
+  "text": "#1c2739",
+  "tagline": "#232b38",
+  "frame": "#101a2b",
+  "glassBackTop": "#d5f0f9",
+  "glassBackMid": "#c3e4f3",
+  "glassBackLow": "#b7dfeb",
+  "glassBackBottom": "#e3f3f9",
+  "edgeBack": "#73a7bf",
+  "glassMidTop": "#e6f4f9",
+  "glassMidMid": "#d6ecf3",
+  "glassMidBottom": "#b7d4e2",
+  "midFrameL": "#5f92a7",
+  "midFrameM": "#3d6178",
+  "midFrameR": "#1f3347",
+  "glassFrontTint": "#bfe1f0"
+ },
+ "geom": {
+  "back": {
+   "tl": [
+    8.2,
+    129.2
+   ],
+   "tr": [
+    27.5,
+    136.3
+   ],
+   "br": [
+    27.5,
+    200.8
+   ],
+   "bl": [
+    8.2,
+    203.6
+   ]
+  },
+  "mid": {
+   "tl": [
+    28.5,
+    98.8
+   ],
+   "tr": [
+    74.2,
+    123.8
+   ],
+   "br": [
+    74.2,
+    196.5
+   ],
+   "bl": [
+    28.5,
+    208.6
+   ],
+   "stroke": 2.8
+  },
+  "front": {
+   "tl": [
+    47.5,
+    89.6
+   ],
+   "tr": [
+    87.5,
+    115.2
+   ],
+   "br": [
+    87.5,
+    190.0
+   ],
+   "bl": [
+    47.5,
+    214.2
+   ],
+   "stroke": 3.2
+  },
+  "frontInner": [
+   [
+    49.1,
+    92.4
+   ],
+   [
+    85.9,
+    116.0
+   ],
+   [
+    85.9,
+    189.2
+   ],
+   [
+    49.1,
+    211.2
+   ]
+  ]
+ },
+ "text": {
+  "baseline": 162.0,
+  "art": {
+   "weight": 400,
+   "size": 41.4,
+   "sx": 1.0,
+   "left": 107.0,
+   "right": 178.6
+  },
+  "vit": {
+   "weight": 700,
+   "size": 42.0,
+   "sx": 0.93,
+   "left": 183.0,
+   "right": 323.4
+  }
+ },
+ "tagline": {
+  "weight": 600,
+  "size": 10.3,
+  "sx": 0.7,
+  "baseline": 186.5,
+  "dotY": 182.9,
+  "dotR": 1.25,
+  "words": [
+   {
+    "id": "steklo",
+    "text": "СТЕКЛО",
+    "left": 107.0,
+    "right": 148.4
+   },
+   {
+    "id": "alyuminiy",
+    "text": "АЛЮМИНИЙ",
+    "left": 165.0,
+    "right": 227.6
+   },
+   {
+    "id": "konstrukcii",
+    "text": "КОНСТРУКЦИИ",
+    "left": 244.0,
+    "right": 323.4
+   }
+  ],
+  "dots": [
+   156.6,
+   235.6
+  ]
+ }
+}

@@ -1,10 +1,10 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import company from "@/data/company.json";
 import { Icon } from "./Icons";
 import { useLead } from "./LeadProvider";
 import ThemeToggle from "./ThemeToggle";
+import LogoSvg from "./LogoSvg";
 
 const nav = [
   ["#services", "Услуги"],
@@ -17,12 +17,11 @@ const nav = [
   ["#contacts", "Контакты"],
 ];
 
-export function Logo({ className = "", light = false }: { className?: string; light?: boolean }) {
-  // Знак лежит в public/logo-mark.svg, замените файл на свой логотип
+// Логотип из слоёв brand/logo (components/logo-markup.ts). Цвет идёт от currentColor: белый поверх hero, графит на светлой шапке.
+export function Logo({ className = "", site = true }: { className?: string; site?: boolean }) {
   return (
-    <a href="#top" className={`flex min-h-11 items-center gap-2.5 font-display text-xl font-extrabold tracking-tight ${className}`} aria-label="АртВитраж — на главную">
-      <Image src="/logo-mark.svg" width={36} height={36} alt="" unoptimized className="size-9" />
-      <span>Арт<span className={light ? "text-gold-light" : "text-gold-text"}>Витраж</span></span>
+    <a href="#top" data-site-logo={site ? "" : undefined} className={`flex min-h-11 items-center ${className}`} aria-label="АртВитраж: на главную">
+      <LogoSvg tagline={false} className="h-[50px] w-auto" />
     </a>
   );
 }
@@ -65,7 +64,7 @@ export default function Header() {
   return (
     <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,color,transform] duration-300 ${hidden && !menu ? "-translate-y-full focus-within:translate-y-0" : ""} ${light ? "text-white" : "glass !rounded-none !border-x-0 !border-t-0 shadow-sm"}`}>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Logo light={light} />
+        <Logo />
         <nav aria-label="Основное меню" className="hidden items-center gap-6 text-sm font-medium xl:flex">
           {nav.map(([h, t]) => (
             <a key={h} href={h} aria-current={active === h ? "location" : undefined} className="relative inline-flex min-h-11 items-center rounded opacity-90 transition hover:opacity-100 aria-[current=location]:opacity-100">

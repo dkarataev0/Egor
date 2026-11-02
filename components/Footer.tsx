@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="border-t border-line bg-surface pb-24 pt-12 lg:pb-12">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 sm:px-6 md:flex-row md:items-start md:justify-between">
         <div>
-          <Logo />
+          <Logo site={false} />
           <p className="mt-3 max-w-xs text-sm text-ink-soft">Изделия из стекла в Краснодаре: перила, ограждения, окна и душевые кабины.</p>
         </div>
         <div className="text-sm text-ink-soft">
