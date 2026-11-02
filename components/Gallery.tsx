@@ -46,7 +46,7 @@ export default function Gallery() {
             key={t.id}
             onClick={() => setFilter(t.id)}
             aria-pressed={filter === t.id}
-            className={`shrink-0 rounded-full border min-h-11 px-4 text-sm font-semibold transition ${filter === t.id ? "border-teal bg-teal text-white" : "border-line bg-white hover:border-teal"}`}
+            className={`shrink-0 rounded-full border min-h-11 px-4 text-sm font-semibold transition ${filter === t.id ? "border-gold bg-gold text-on-gold" : "border-line bg-surface hover:border-gold"}`}
           >
             {t.title}
           </button>
@@ -54,12 +54,12 @@ export default function Gallery() {
       </div>
       <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
         {list.map((w, i) => (
-          <li key={`${filter}-${w.id}`} className="pop-in" style={{ "--i": i } as React.CSSProperties}>
+          <Reveal as="li" key={`${filter}-${w.id}`} className="scale-reveal" delay={(i % 3) * 90}>
             <button onClick={() => setIdx(i)} className="shine group relative block aspect-[4/3] w-full overflow-hidden rounded-2xl" aria-label={`Открыть фото: ${w.title}`}>
               <Image src={w.image} alt={w.title} fill sizes="(min-width:1024px) 33vw, 50vw" loading="lazy" className="object-cover transition duration-700 group-hover:scale-105" />
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 pt-10 text-left text-sm font-semibold text-white">{w.title}</span>
             </button>
-          </li>
+          </Reveal>
         ))}
       </ul>
 
@@ -70,9 +70,9 @@ export default function Gallery() {
               <Image src={cur.image} alt={cur.title} fill sizes="96vw" className="lb-img object-contain" key={cur.image} />
             </div>
             <figcaption className="mt-3 text-center text-white">{cur.title}</figcaption>
-            <button onClick={() => setIdx(null)} aria-label="Закрыть" className="absolute right-2 top-2 grid size-11 place-items-center rounded-full bg-white/90"><Icon.close /></button>
-            <button onClick={() => step(-1)} aria-label="Предыдущее фото" className="absolute left-2 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/90"><Icon.arrow className="rotate-180" /></button>
-            <button onClick={() => step(1)} aria-label="Следующее фото" className="absolute right-2 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/90"><Icon.arrow /></button>
+            <button onClick={() => setIdx(null)} aria-label="Закрыть" className="absolute right-2 top-2 grid size-11 place-items-center rounded-full bg-white/90 text-on-gold"><Icon.close /></button>
+            <button onClick={() => step(-1)} aria-label="Предыдущее фото" className="absolute left-2 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-on-gold"><Icon.arrow className="rotate-180" /></button>
+            <button onClick={() => step(1)} aria-label="Следующее фото" className="absolute right-2 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-on-gold"><Icon.arrow /></button>
           </figure>
         )}
       </dialog>

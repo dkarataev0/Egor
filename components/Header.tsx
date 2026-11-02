@@ -19,11 +19,11 @@ export function Logo({ className = "", light = false }: { className?: string; li
   // TODO: заменить на public/logo.svg, когда будет готов логотип
   return (
     <a href="#top" className={`flex min-h-11 items-center gap-2.5 font-display text-xl font-extrabold tracking-tight ${className}`} aria-label="АртВитраж — на главную">
-      <span className="relative grid size-9 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-teal to-teal-dark text-white">
+      <span className="relative grid size-9 place-items-center overflow-hidden rounded-xl bg-gradient-to-br from-gold to-gold-deep text-on-gold">
         <span className="absolute -left-2 top-0 h-full w-3 rotate-12 bg-white/30" />
         <span className="text-base">А</span>
       </span>
-      <span>Арт<span className={light ? "text-glass-light" : "text-teal"}>Витраж</span></span>
+      <span>Арт<span className={light ? "text-gold-light" : "text-gold"}>Витраж</span></span>
     </a>
   );
 }

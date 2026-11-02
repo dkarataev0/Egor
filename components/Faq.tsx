@@ -18,7 +18,7 @@ export default function Faq() {
           const on = open === i;
           return (
             <Reveal key={f.q} delay={i * 40}>
-              <div className="rounded-2xl border border-line bg-surface">
+              <div data-spotlight className="spotlight rounded-2xl border border-line bg-surface">
                 <h3>
                   <button
                     onClick={() => setOpen(on ? null : i)}
@@ -28,7 +28,7 @@ export default function Faq() {
                     className="flex w-full items-center justify-between gap-4 p-5 text-left font-display text-lg font-bold"
                   >
                     {f.q}
-                    <Icon.plus className={`size-5 shrink-0 text-teal transition-transform ${on ? "rotate-45" : ""}`} />
+                    <Icon.plus className={`size-5 shrink-0 text-gold transition-transform ${on ? "rotate-45" : ""}`} />
                   </button>
                 </h3>
                 <div id={`faq-${i}`} role="region" aria-labelledby={`faq-btn-${i}`} className={`grid transition-[grid-template-rows] duration-300 ${on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
