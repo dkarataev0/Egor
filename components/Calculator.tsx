@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import services from "@/data/services.json";
 import calcData from "@/data/calculator.json";
 import { compute, defaults, type ServiceCalc, type Values } from "@/lib/calc";
@@ -13,6 +13,26 @@ const available = services.filter((s) => configs[s.id]);
 const input =
   "w-full rounded-xl border border-line bg-white px-4 py-3 text-base outline-none focus:border-teal focus:ring-2 focus:ring-teal/25";
 
+/** Плавный пересчёт числа при изменении параметров (мгновенно при reduced-motion). */
+function useTween(target: number) {
+  const [v, setV] = useState(target);
+  const from = useRef(target);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { from.current = target; setV(target); return; }
+    const a = from.current, t0 = performance.now();
+    let raf = 0;
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0) / 500);
+      const val = a + (target - a) * (1 - (1 - k) ** 3);
+      from.current = val; setV(val);
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target]);
+  return Math.round(v / 100) * 100;
+}
+
 export default function Calculator() {
   const { open } = useLead();
   const [id, setId] = useState(available[0]?.id ?? "");
@@ -22,6 +42,7 @@ export default function Calculator() {
   const cfg = configs[id];
   const values = all[id];
   const result = useMemo(() => (cfg ? compute(cfg, values) : null), [cfg, values]);
+  const shownPrice = useTween(result?.price ?? 0);
   if (!cfg || !result) return null;
 
   const set = (fid: string, v: number | string | boolean) => setAll((a) => ({ ...a, [id]: { ...a[id], [fid]: v } }));
@@ -77,7 +98,7 @@ export default function Calculator() {
 
       <aside className="glass self-start rounded-3xl p-6 sm:p-8 lg:sticky lg:top-24" aria-live="polite">
         <p className="text-sm text-ink-soft">{title}</p>
-        <p className="mt-3 font-display text-4xl font-extrabold">от {rub(result.price)}</p>
+        <p className="mt-3 font-display text-4xl font-extrabold">от {rub(shownPrice)}</p>
         <p className="mt-1 text-sm text-ink-soft">Предварительный расчёт. Точную цену назовём после замера.</p>
         <dl className="mt-5 grid gap-1.5 border-t border-line pt-4 text-sm">
           {result.lines.map((l) => (

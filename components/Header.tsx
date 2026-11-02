@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import company from "@/data/company.json";
 import { Icon } from "./Icons";
 import { useLead } from "./LeadProvider";
@@ -31,23 +31,48 @@ export function Logo({ className = "", light = false }: { className?: string; li
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [active, setActive] = useState("");
+  const lastY = useRef(0);
   const { open } = useLead();
 
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 20);
+    const on = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      // Шапка прячется при прокрутке вниз и возвращается при прокрутке вверх
+      const dy = y - lastY.current;
+      if (y <= 240 || dy < -4) setHidden(false);
+      else if (dy > 4) setHidden(true);
+      lastY.current = y;
+    };
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
 
+  // Подсветка пункта меню текущей секции
+  useEffect(() => {
+    const els = nav.map(([h]) => document.querySelector(h)).filter(Boolean) as Element[];
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive("#" + e.target.id)),
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   const light = !scrolled && !menu;
   return (
-    <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,color] ${light ? "text-white" : "glass !rounded-none !border-x-0 !border-t-0 shadow-sm"}`}>
+    <header className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,color,transform] duration-300 ${hidden && !menu ? "-translate-y-full focus-within:translate-y-0" : ""} ${light ? "text-white" : "glass !rounded-none !border-x-0 !border-t-0 shadow-sm"}`}>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Logo light={light} />
         <nav aria-label="Основное меню" className="hidden items-center gap-6 text-sm font-medium xl:flex">
           {nav.map(([h, t]) => (
-            <a key={h} href={h} className="inline-flex min-h-11 items-center rounded opacity-90 transition hover:underline hover:underline-offset-8 hover:opacity-100">{t}</a>
+            <a key={h} href={h} aria-current={active === h ? "location" : undefined} className="relative inline-flex min-h-11 items-center rounded opacity-90 transition hover:opacity-100 aria-[current=location]:opacity-100">
+              {t}
+              <span aria-hidden="true" className="absolute inset-x-0 bottom-2 h-0.5 origin-left scale-x-0 rounded bg-current transition-transform duration-300 ease-out" style={{ transform: active === h ? "scaleX(1)" : undefined }} />
+            </a>
           ))}
         </nav>
         <div className="flex items-center gap-3">

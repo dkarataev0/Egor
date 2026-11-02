@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import works from "@/data/works.json";
 import services from "@/data/services.json";
 import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 import { Icon } from "./Icons";
 
 export default function Gallery() {
@@ -37,7 +38,7 @@ export default function Gallery() {
   return (
     <section id="works" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
-        <h2 className="section-title mt-3">Примеры наших изделий</h2>
+        <SectionTitle className="mt-3">Примеры наших изделий</SectionTitle>
       </Reveal>
       <div role="group" aria-label="Фильтр по услугам" className="-mx-4 mt-8 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0">
         {tabs.map((t) => (

@@ -1,11 +1,12 @@
 import steps from "@/data/steps.json";
 import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 
 export default function Steps() {
   return (
     <section id="steps" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
-        <h2 className="section-title mt-3">От замера до монтажа</h2>
+        <SectionTitle className="mt-3">От замера до монтажа</SectionTitle>
       </Reveal>
       <Reveal className="relative mt-14">
         <span aria-hidden="true" className="draw-line absolute left-0 right-0 top-[7px] hidden h-px bg-brass/70 md:block" />

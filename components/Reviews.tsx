@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 import reviews from "@/data/reviews.json";
 import { Icon } from "./Icons";
 
@@ -10,7 +11,7 @@ export default function Reviews() {
     <section id="reviews" className="bg-surface py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
-          <h2 className="section-title mt-3">Что говорят клиенты</h2>
+          <SectionTitle className="mt-3">Что говорят клиенты</SectionTitle>
         </Reveal>
         {list.length === 0 ? (
           <div className="mt-10 rounded-3xl border border-dashed border-teal/40 bg-bg p-10 text-center text-ink-soft">

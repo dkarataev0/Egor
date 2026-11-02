@@ -12,12 +12,14 @@ import Footer from "@/components/Footer";
 import MobileFab from "@/components/MobileFab";
 import ScrollProgress from "@/components/ScrollProgress";
 import MusicToggle from "@/components/MusicToggle";
+import MotionEffects from "@/components/MotionEffects";
 import LeadProvider from "@/components/LeadProvider";
 
 export default function Home() {
   return (
     <LeadProvider>
       <ScrollProgress />
+      <MotionEffects />
       <Header />
       <main>
         <Hero />

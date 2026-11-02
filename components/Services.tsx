@@ -2,6 +2,7 @@
 import Image from "next/image";
 import services from "@/data/services.json";
 import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 import Tilt from "./Tilt";
 import { useLead } from "./LeadProvider";
 
@@ -12,7 +13,7 @@ export default function Services() {
   return (
     <section id="services" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
-        <h2 className="section-title mt-3 max-w-2xl">Что мы делаем из стекла</h2>
+        <SectionTitle className="mt-3 max-w-2xl">Что мы делаем из стекла</SectionTitle>
       </Reveal>
       <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (

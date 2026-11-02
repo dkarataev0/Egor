@@ -2,6 +2,7 @@
 import { useState } from "react";
 import faq from "@/data/faq.json";
 import Reveal from "./Reveal";
+import SectionTitle from "./SectionTitle";
 import { Icon } from "./Icons";
 
 export default function Faq() {
@@ -10,7 +11,7 @@ export default function Faq() {
     <section id="faq" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <div className="max-w-3xl">
       <Reveal>
-        <h2 className="section-title mt-3">Частые вопросы</h2>
+        <SectionTitle className="mt-3">Частые вопросы</SectionTitle>
       </Reveal>
       <div className="mt-10 grid gap-3">
         {faq.map((f, i) => {

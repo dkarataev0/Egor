@@ -25,8 +25,9 @@ export default function MusicToggle() {
     if (!a) return;
     const from = a.volume, t0 = performance.now();
     const step = (now: number) => {
-      const k = Math.min(1, (now - t0) / ms);
-      a.volume = from + (to - from) * k;
+      // временная метка rAF может быть чуть раньше t0, поэтому k зажимаем в [0, 1]
+      const k = Math.min(1, Math.max(0, (now - t0) / ms));
+      a.volume = Math.min(1, Math.max(0, from + (to - from) * k));
       if (k < 1) raf.current = requestAnimationFrame(step);
       else done?.();
     };
