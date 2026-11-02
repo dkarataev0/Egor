@@ -20,18 +20,18 @@ export default function Contacts() {
       </Reveal>
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         <Reveal>
-          <ul className="glass stagger grid gap-1 rounded-3xl p-4 sm:p-6">
+          <ul data-spotlight className="spotlight glass stagger grid gap-1 rounded-3xl p-4 sm:p-6">
             {rows.map(({ i: I, t, v, h }, idx) => (
               <li key={t} style={{ "--i": idx } as React.CSSProperties}>
                 {h ? (
-                  <a href={h} target={h.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="flex items-center gap-4 rounded-2xl p-3 transition hover:bg-teal-soft">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-teal text-white"><I className="size-5" /></span>
-                    <span><span className="block text-xs uppercase tracking-wider text-ink-soft">{t}</span><span className="font-semibold">{v}</span></span>
+                  <a href={h} target={h.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="flex items-center gap-4 rounded-2xl p-3 transition hover:bg-gold-soft">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-gold text-on-gold"><I className="size-5" /></span>
+                    <span><span className="block text-sm text-ink-soft">{t}</span><span className="font-semibold">{v}</span></span>
                   </a>
                 ) : (
                   <div className="flex items-center gap-4 p-3">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-teal text-white"><I className="size-5" /></span>
-                    <span><span className="block text-xs uppercase tracking-wider text-ink-soft">{t}</span><span className="font-semibold">{v}</span></span>
+                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-gold text-on-gold"><I className="size-5" /></span>
+                    <span><span className="block text-sm text-ink-soft">{t}</span><span className="font-semibold">{v}</span></span>
                   </div>
                 )}
               </li>

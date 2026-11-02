@@ -14,7 +14,7 @@ export default function Reviews() {
           <SectionTitle className="mt-3">Что говорят клиенты</SectionTitle>
         </Reveal>
         {list.length === 0 ? (
-          <div className="mt-10 rounded-3xl border border-dashed border-teal/40 bg-bg p-10 text-center text-ink-soft">
+          <div className="mt-10 rounded-3xl border border-dashed border-gold/40 bg-bg p-10 text-center text-ink-soft">
             Здесь появятся отзывы наших клиентов.
             {/* TODO: добавить реальные отзывы в data/reviews.json */}
           </div>

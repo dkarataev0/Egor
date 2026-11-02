@@ -41,17 +41,17 @@ export default function LeadProvider({ children }: { children: React.ReactNode }
         onClose={close}
         onClick={(e) => e.target === dialogRef.current && close()}
         aria-labelledby="lead-title"
-        className="m-auto w-[min(32rem,calc(100vw-1.5rem))] max-h-[92dvh] overflow-y-auto rounded-3xl bg-white p-0 shadow-2xl backdrop:bg-scrim/55 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(32rem,calc(100vw-1.5rem))] max-h-[92dvh] overflow-y-auto rounded-3xl bg-surface p-0 text-ink shadow-2xl backdrop:bg-scrim/55 backdrop:backdrop-blur-sm"
       >
         {opts && (
           <div className="relative p-6 sm:p-8">
-            <button onClick={close} aria-label="Закрыть форму" className="absolute right-4 top-4 grid size-10 place-items-center rounded-full hover:bg-teal-soft">
+            <button onClick={close} aria-label="Закрыть форму" className="absolute right-4 top-4 grid size-10 place-items-center rounded-full hover:bg-gold-soft">
               <Icon.close className="size-5" />
             </button>
             <h2 id="lead-title" className="pr-10 text-2xl font-extrabold">Оставить заявку</h2>
             <p className="mb-5 mt-1 text-sm text-ink-soft">Перезвоним в течение 15 минут в рабочее время.</p>
             {opts.calc && (
-              <p className="mb-4 rounded-xl bg-teal-soft p-3 text-sm">Расчёт приложим к заявке: <b>от {new Intl.NumberFormat("ru-RU").format(Number(opts.calc.price))} ₽</b></p>
+              <p className="mb-4 rounded-xl bg-gold-soft p-3 text-sm">Расчёт приложим к заявке: <b>от {new Intl.NumberFormat("ru-RU").format(Number(opts.calc.price))} ₽</b></p>
             )}
             <LeadForm serviceId={opts.serviceId} calc={opts.calc} onDone={close} />
           </div>

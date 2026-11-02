@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import company from "@/data/company.json";
 import { useLead } from "./LeadProvider";
+import HeroParticles from "./HeroParticles";
 
 export default function Hero() {
   const { open } = useLead();
@@ -40,6 +41,7 @@ export default function Hero() {
         <span className="orb" style={{ left: "40%", top: "62%", width: "12rem", height: "12rem", ["--delay" as string]: "-9s" }} />
         <span className="glint" />
       </div>
+      <HeroParticles />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-scrim/80 via-scrim/45 to-transparent" />
       <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6">
         <h1 className="mt-4 max-w-3xl text-[clamp(2.25rem,6.5vw,4.75rem)] font-extrabold leading-[1.02] text-white">

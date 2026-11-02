@@ -23,23 +23,23 @@ function svg(w, h, seed, hue) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
 <defs>
 <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-<stop offset="0" stop-color="hsl(${hue},45%,88%)"/><stop offset="0.5" stop-color="hsl(${hue + 8},50%,62%)"/><stop offset="1" stop-color="hsl(${hue + 20},55%,28%)"/></linearGradient>
-<linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-<radialGradient id="orb"><stop offset="0" stop-color="#fff" stop-opacity="0.9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+<stop offset="0" stop-color="hsl(${hue},52%,72%)"/><stop offset="0.42" stop-color="hsl(${hue + 4},28%,30%)"/><stop offset="1" stop-color="hsl(200,14%,8%)"/></linearGradient>
+<linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f6e7c4" stop-opacity="0"/><stop offset="0.5" stop-color="#f6e7c4" stop-opacity="1"/><stop offset="1" stop-color="#f6e7c4" stop-opacity="0"/></linearGradient>
+<radialGradient id="orb"><stop offset="0" stop-color="#f6e7c4" stop-opacity="0.9"/><stop offset="1" stop-color="#f6e7c4" stop-opacity="0"/></radialGradient>
 <filter id="b"><feGaussianBlur stdDeviation="${Math.round(h / 90)}"/></filter>
 </defs>
 <rect width="100%" height="100%" fill="url(#bg)"/>
 <g filter="url(#b)">${orbs}</g>${bands}
-<rect x="${w * 0.08}" y="${h * 0.1}" width="${w * 0.84}" height="${h * 0.8}" fill="none" stroke="#fff" stroke-opacity="0.35" stroke-width="${Math.max(2, w / 500)}"/>
+<rect x="${w * 0.08}" y="${h * 0.1}" width="${w * 0.84}" height="${h * 0.8}" fill="none" stroke="#e3c688" stroke-opacity="0.45" stroke-width="${Math.max(2, w / 500)}"/>
 </svg>`;
 }
 
 const jobs = [
-  ["hero/hero", 2400, 1350, 1, 185],
-  ["services/railings", 1200, 800, 2, 190],
-  ["services/windows", 1200, 800, 3, 200],
-  ["services/showers", 1200, 800, 4, 178],
-  ...[1, 2, 3, 4, 5, 6].map((n) => [`works/work-${n}`, 1200, n % 2 ? 900 : 1200, 10 + n, 175 + n * 6]),
+  ["hero/hero", 2400, 1350, 1, 40],
+  ["services/railings", 1200, 800, 2, 38],
+  ["services/windows", 1200, 800, 3, 44],
+  ["services/showers", 1200, 800, 4, 34],
+  ...[1, 2, 3, 4, 5, 6].map((n) => [`works/work-${n}`, 1200, n % 2 ? 900 : 1200, 10 + n, 32 + n * 3]),
 ];
 
 for (const d of ["hero", "services", "works"]) mkdirSync(`public/images/${d}`, { recursive: true });

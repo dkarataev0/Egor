@@ -11,7 +11,7 @@ type Props = { serviceId?: string; calc?: Record<string, unknown>; onDone?: () =
 type Errors = Partial<Record<"name" | "phone" | "consent" | "photo", string>>;
 
 const field =
-  "w-full rounded-xl border border-line bg-white px-4 py-3 text-base outline-none focus:border-teal focus:ring-2 focus:ring-teal/25 aria-[invalid=true]:border-red-600";
+  "w-full rounded-xl border border-line bg-surface-2 px-4 py-3 text-base outline-none focus:border-gold focus:ring-2 focus:ring-gold/25 aria-[invalid=true]:border-red-400";
 
 export default function LeadForm({ serviceId, calc, onDone }: Props) {
   const [phone, setPhone] = useState("");
@@ -58,7 +58,7 @@ export default function LeadForm({ serviceId, calc, onDone }: Props) {
   if (state === "done") {
     return (
       <div role="status" className="py-6 text-center">
-        <svg viewBox="0 0 52 52" className="mx-auto mb-4 size-16 text-teal" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <svg viewBox="0 0 52 52" className="mx-auto mb-4 size-16 text-gold" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
           <circle className="check-circle" cx="26" cy="26" r="23" />
           <path className="check-mark" d="M15 27l8 8 15-17" />
         </svg>
@@ -70,7 +70,7 @@ export default function LeadForm({ serviceId, calc, onDone }: Props) {
     );
   }
 
-  const err = (k: keyof Errors) => errors[k] && <span id={`err-${k}`} className="text-sm text-red-700">{errors[k]}</span>;
+  const err = (k: keyof Errors) => errors[k] && <span id={`err-${k}`} className="text-sm text-red-300">{errors[k]}</span>;
   const aria = (k: keyof Errors) => ({ "aria-invalid": Boolean(errors[k]), "aria-describedby": errors[k] ? `err-${k}` : undefined });
 
   return (
@@ -101,18 +101,18 @@ export default function LeadForm({ serviceId, calc, onDone }: Props) {
         <textarea className={field} name="comment" rows={3} maxLength={1500} />
       </label>
       <label className="grid gap-1.5 text-sm font-medium">Фото объекта <span className="font-normal text-ink-soft">(необязательно, до 5 МБ)</span>
-        <input className={`${field} file:mr-3 file:rounded-full file:border-0 file:bg-teal-soft file:px-4 file:py-2 file:font-semibold file:text-teal-dark`} name="photo" type="file" accept="image/jpeg,image/png,image/webp" {...aria("photo")} />
+        <input className={`${field} file:mr-3 file:rounded-full file:border-0 file:bg-gold-soft file:px-4 file:py-2 file:font-semibold file:text-gold-light`} name="photo" type="file" accept="image/jpeg,image/png,image/webp" {...aria("photo")} />
         {err("photo")}
       </label>
       <div className="grid gap-1.5">
         <label className="flex items-start gap-3 text-sm">
           <input type="checkbox" name="consent" value="true" className="mt-0.5 size-5 shrink-0" required {...aria("consent")} />
-          <span>Согласен на обработку персональных данных в соответствии с <Link href="/privacy" target="_blank" className="text-teal-dark underline underline-offset-2">политикой конфиденциальности</Link></span>
+          <span>Согласен на обработку персональных данных в соответствии с <Link href="/privacy" target="_blank" className="text-gold-light underline underline-offset-2">политикой конфиденциальности</Link></span>
         </label>
         {err("consent")}
       </div>
 
-      {serverError && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-800">{serverError} <a className="font-semibold underline" href={`tel:${company.phone}`}>{company.phoneDisplay}</a></p>}
+      {serverError && <p role="alert" className="rounded-xl bg-red-950/60 p-3 text-sm text-red-200">{serverError} <a className="font-semibold underline" href={`tel:${company.phone}`}>{company.phoneDisplay}</a></p>}
       <button className="btn btn-primary" type="submit" disabled={state === "sending"}>
         {state === "sending" ? "Отправляем…" : "Отправить заявку"}
       </button>

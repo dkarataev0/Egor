@@ -11,7 +11,7 @@ const configs = calcData.services as unknown as Record<string, ServiceCalc>;
 const available = services.filter((s) => configs[s.id]);
 
 const input =
-  "w-full rounded-xl border border-line bg-white px-4 py-3 text-base outline-none focus:border-teal focus:ring-2 focus:ring-teal/25";
+  "w-full rounded-xl border border-line bg-surface-2 px-4 py-3 text-base outline-none focus:border-gold focus:ring-2 focus:ring-gold/25";
 
 /** Плавный пересчёт числа при изменении параметров (мгновенно при reduced-motion). */
 function useTween(target: number) {
@@ -55,7 +55,7 @@ export default function Calculator() {
           {available.map((s) => (
             <button
               key={s.id} role="tab" aria-selected={s.id === id} onClick={() => setId(s.id)}
-              className={`min-h-11 shrink-0 rounded-full border px-4 text-sm font-semibold transition ${s.id === id ? "border-teal bg-teal text-white" : "border-line bg-white hover:border-teal"}`}
+              className={`min-h-11 shrink-0 rounded-full border px-4 text-sm font-semibold transition ${s.id === id ? "border-gold bg-gold text-on-gold" : "border-line bg-surface hover:border-gold"}`}
             >
               {s.title}
             </button>
@@ -96,7 +96,7 @@ export default function Calculator() {
         </div>
       </div>
 
-      <aside className="glass self-start rounded-3xl p-6 sm:p-8 lg:sticky lg:top-24" aria-live="polite">
+      <aside data-spotlight className="spotlight glass self-start rounded-3xl p-6 sm:p-8 lg:sticky lg:top-24" aria-live="polite">
         <p className="text-sm text-ink-soft">{title}</p>
         <p className="mt-3 font-display text-4xl font-extrabold">от {rub(shownPrice)}</p>
         <p className="mt-1 text-sm text-ink-soft">Предварительный расчёт. Точную цену назовём после замера.</p>

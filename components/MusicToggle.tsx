@@ -104,13 +104,13 @@ export default function MusicToggle() {
       aria-pressed={playing}
       aria-label={playing ? "Выключить фоновую музыку" : "Включить фоновую музыку"}
       title={playing ? "Выключить музыку" : "Включить музыку"}
-      className="glass fixed bottom-4 right-4 z-30 grid size-12 place-items-center rounded-full text-teal-dark transition hover:scale-105"
+      className="glass fixed bottom-4 right-4 z-30 grid size-12 place-items-center rounded-full text-gold-light transition hover:scale-105"
       data-enabled={enabled}
     >
       {playing ? (
         <span className="flex h-5 items-end gap-[3px]" aria-hidden="true">
           {[0, 1, 2, 3].map((i) => (
-            <span key={i} className="eq-bar w-[3px] origin-bottom rounded-full bg-teal" style={{ height: "100%", animationDelay: `${i * 0.18}s` }} />
+            <span key={i} className="eq-bar w-[3px] origin-bottom rounded-full bg-gold" style={{ height: "100%", animationDelay: `${i * 0.18}s` }} />
           ))}
         </span>
       ) : (
