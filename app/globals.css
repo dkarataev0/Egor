@@ -361,3 +361,81 @@ b, .font-display { font-variant-numeric: tabular-nums; }
   transform: scaleX(var(--progress, 0));
   background: linear-gradient(90deg, var(--gold-deep), var(--gold-light));
 }
+
+
+/* ───────── Логотип и заставка ───────── */
+.lg { display: block; overflow: visible; }
+.lg-notag .lg-tag { display: none; }
+
+/* Заставка: показывается только пока на <html> стоит класс intro-running (ставит скрипт в <head>). */
+.intro-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  place-items: center;
+  background-color: var(--bg);
+  color: var(--ink);
+  touch-action: none;
+  cursor: pointer;
+  transition: background-color 0.9s ease;
+}
+html.intro-running .intro-overlay { display: grid; animation: introGone 0s 14s forwards; } /* страховка, если скрипт не отработал */
+html.intro-running [data-site-logo] { opacity: 0; }
+@keyframes introGone { to { visibility: hidden; } }
+.intro-stage { width: min(86vw, 880px); will-change: transform; }
+.intro-overlay.is-leaving { background-color: transparent; pointer-events: none; }
+.intro-overlay.is-leaving .lg-tag { opacity: 0; transition: opacity 0.35s ease; }
+.intro-skip {
+  position: absolute;
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
+  left: 50%;
+  translate: -50% 0;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  animation: skipIn 0.6s ease 1.2s forwards;
+  transition: color 0.2s, border-color 0.2s;
+}
+.intro-skip:hover { color: var(--ink); border-color: var(--gold); }
+.intro-overlay.is-leaving .intro-skip { opacity: 0 !important; transition: opacity 0.3s; animation: none; }
+@keyframes skipIn { to { opacity: 1; } }
+
+/* Анимация логотипа (3,35 с). Время масштабируется переменной --k (1 = версия 4,4 с из brand/logo). */
+.lg-play {
+  --k: 0.75;
+  --glide: cubic-bezier(0.33, 0, 0.1, 1);
+  --inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --fade: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.lg-play .lg-frame { stroke-dasharray: 1; stroke-dashoffset: 1; animation: lgDraw calc(1.1s * var(--k)) var(--inout) 0s both; }
+.lg-play .lg-back  { --sx: 46px; --d: calc(0.35s * var(--k)); animation: lgGlideX calc(1.25s * var(--k)) var(--glide) var(--d) both, lgFade calc(0.9s * var(--k)) var(--fade) var(--d) both, lgBlur calc(1.1s * var(--k)) var(--fade) var(--d) both; }
+.lg-play .lg-mid   { --sx: 40px; --d: calc(0.50s * var(--k)); animation: lgGlideX calc(1.25s * var(--k)) var(--glide) var(--d) both, lgFade calc(0.9s * var(--k)) var(--fade) var(--d) both, lgBlur calc(1.1s * var(--k)) var(--fade) var(--d) both; }
+.lg-play .lg-front { --sx: 28px; --d: calc(0.65s * var(--k)); animation: lgGlideX calc(1.25s * var(--k)) var(--glide) var(--d) both, lgFade calc(0.9s * var(--k)) var(--fade) var(--d) both, lgBlur calc(1.1s * var(--k)) var(--fade) var(--d) both; }
+.lg-play .lg-art   { animation: lgRise calc(1s * var(--k)) var(--glide) calc(1.3s * var(--k)) both, lgFade calc(0.8s * var(--k)) var(--fade) calc(1.3s * var(--k)) both; }
+.lg-play .lg-reveal { animation: lgReveal calc(1s * var(--k)) var(--inout) calc(1.6s * var(--k)) both; }
+.lg-play .lg-tl { --d: calc((2.2s + var(--i, 0) * 0.012s) * var(--k)); animation: lgTrack calc(1.1s * var(--k)) var(--glide) var(--d) both, lgFade calc(0.6s * var(--k)) var(--fade) var(--d) both; }
+.lg-play .lg-td { transform-box: fill-box; transform-origin: center; --dd: calc(3.05s * var(--k)); animation: lgDot calc(0.7s * var(--k)) var(--glide) var(--dd) both, lgFade calc(0.5s * var(--k)) var(--fade) var(--dd) both; }
+.lg-play .lg-d2 { --dd: calc(3.2s * var(--k)); }
+.lg-play .lg-glint { animation: lgGlint calc(1.1s * var(--k)) var(--inout) calc(3.3s * var(--k)) both; }
+@keyframes lgDraw { to { stroke-dashoffset: 0; } }
+@keyframes lgGlideX { from { transform: translateX(var(--sx)); } to { transform: none; } }
+@keyframes lgFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lgBlur { from { filter: blur(1.8px); } to { filter: none; } }
+@keyframes lgRise { from { transform: translateY(3px); } to { transform: none; } }
+@keyframes lgReveal { from { transform: translateX(-166.8px); } to { transform: none; } }
+@keyframes lgTrack { from { transform: translateX(calc(var(--dx) * 1px)); } to { transform: none; } }
+@keyframes lgDot { from { transform: scale(0.4); } to { transform: none; } }
+@keyframes lgGlint { from { transform: translateX(-46px); } to { transform: translateX(143px); } }
+/* Пропуск: сразу финальный вид */
+.lg-play.lg-settled * { animation: none !important; }
+.lg-play.lg-settled .lg-frame { stroke-dasharray: none; stroke-dashoffset: 0; }
+.lg-play.lg-settled .lg-glint { display: none; }
+
+@media (prefers-reduced-motion: reduce) { .intro-overlay { display: none !important; } html.intro-running [data-site-logo] { opacity: 1; } }
