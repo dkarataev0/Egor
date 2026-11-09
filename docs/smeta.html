@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Смета на сайт</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Сухой деловой документ: графит на тёплом белом, золото только для итоговой суммы. Таблицы как основной элемент. */
+:root{
+  --bg:#f6f4ef; --card:#ffffff; --ink:#1d2428; --mute:#5b676d; --line:#dfdad0; --gold:#8a6420; --goldbg:#f3ead6;
+  --head:"Manrope",system-ui,sans-serif; --body:"PT Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13191c;--card:#1b2327;--ink:#ece7da;--mute:#a3adb1;--line:#2f3a3f;--gold:#e0c185;--goldbg:#2b2819;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13191c;--card:#1b2327;--ink:#ece7da;--mute:#a3adb1;--line:#2f3a3f;--gold:#e0c185;--goldbg:#2b2819;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:17px/1.55 var(--body)}
+main{max-width:860px;margin:0 auto;padding:40px 16px 72px;display:flex;flex-direction:column;gap:36px}
+h1,h2{font-family:var(--head);letter-spacing:-.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.9rem,5vw,2.6rem);line-height:1.1}
+h2{font-size:1.45rem;line-height:1.2}
+p{margin:0}
+.lead{color:var(--mute);max-width:62ch;margin-top:10px}
+section{display:flex;flex-direction:column;gap:14px}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:4px}
+.tile small{color:var(--mute);font-size:.9rem}
+.tile b{font-family:var(--head);font-size:1.5rem;font-variant-numeric:tabular-nums}
+.tile.total{background:var(--goldbg);border-color:var(--gold)}
+.tile.total b{color:var(--gold)}
+.rate{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.rate label{font-weight:700}
+.rate input{font:inherit;width:7.5em;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font-variant-numeric:tabular-nums}
+.rate input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.rate span{color:var(--mute);font-size:.92rem}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-variant-numeric:tabular-nums}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{font-family:var(--head);font-size:.85rem;color:var(--mute);font-weight:700;white-space:nowrap}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td small{display:block;color:var(--mute);font-size:.9rem;margin-top:2px}
+tfoot td{font-weight:700;background:var(--goldbg)}
+ul{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:8px}
+.note{border-left:3px solid var(--gold);padding:2px 0 2px 14px;color:var(--mute)}
+@media(max-width:520px){body{font-size:16px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Смета на сайт «АртВитраж»</h1>
+  <p class="lead">Одностраничный сайт компании по стеклянным конструкциям в Краснодаре. Объём соответствует тому, что уже сделано и выложено: дизайн, вёрстка, приём заявок, калькулятор, галерея работ, анимированный логотип.</p>
+</header>
+
+<section aria-labelledby="sum-h">
+  <h2 id="sum-h">Итог</h2>
+  <div class="rate">
+    <label for="rate">Ставка, ₽ в час</label>
+    <input id="rate" type="number" inputmode="numeric" min="500" step="100" value="2500">
+    <span>Измените ставку, и суммы пересчитаются.</span>
+  </div>
+  <div class="sum">
+    <div class="tile"><small>Трудозатраты</small><b id="h-range">120–175 ч</b></div>
+    <div class="tile total"><small>Стоимость разработки</small><b id="p-range">300 000–437 500 ₽</b></div>
+    <div class="tile"><small>Срок при 25–30 ч в неделю</small><b>5–7 недель</b></div>
+  </div>
+</section>
+
+<section aria-labelledby="work-h">
+  <h2 id="work-h">Состав работ</h2>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Этап</th><th class="n">Часы</th><th class="n">Стоимость</th></tr></thead>
+    <tbody id="rows"></tbody>
+    <tfoot><tr><td>Итого</td><td class="n" id="t-h"></td><td class="n" id="t-p"></td></tr></tfoot>
+  </table>
+  </div>
+</section>
+
+<section aria-labelledby="run-h">
+  <h2 id="run-h">Отдельные расходы заказчика</h2>
+  <ul>
+    <li><b>Домен</b> перегородки-краснодар.рф: продлевается у регистратора по его тарифу.</li>
+    <li><b>Хостинг.</b> Сейчас сайт работает на Vercel. Тариф Hobby предназначен для некоммерческого использования, для бизнеса нужен платный тариф (Pro, около 20 $ в месяц, актуальную цену смотрите на vercel.com/pricing). Альтернатива: российский хостинг, тогда потребуется перенос.</li>
+    <li><b>Почта для заявок</b> (SMTP) и Telegram-бот: бот бесплатный, почта зависит от провайдера.</li>
+    <li><b>Яндекс.Метрика</b> бесплатна.</li>
+    <li><b>Юридический текст.</b> Политику конфиденциальности (152-ФЗ) нужно проверить у юриста и вписать реквизиты оператора.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="opt-h">
+  <h2 id="opt-h">Что не входит и можно добавить отдельно</h2>
+  <ul>
+    <li><b>Расчёт цены в калькуляторе.</b> Сейчас у душевых, перил и окон демо-цены, у остальных услуг расчёт только по размерам. Нужны реальные цены и формулы от заказчика.</li>
+    <li><b>Отдельные страницы услуг</b> с описанием, фото и формой: полезно для поиска и рекламы.</li>
+    <li><b>Реальные отзывы</b> и пары фото «до и после» (блок готов, ждёт материалов).</li>
+    <li><b>Панель для самостоятельного редактирования</b> цен, услуг и фото без правки файлов.</li>
+    <li><b>Видео в первом экране</b> (механизм готов, нужен ролик от заказчика).</li>
+    <li><b>Настройка рекламы</b> в Яндекс Директе и ведение сайта (ежемесячная поддержка).</li>
+    <li><b>Фотосъёмка</b> объектов и тексты под заказ.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="as-h">
+  <h2 id="as-h">Как читать смету</h2>
+  <p class="note">Часы показывают объём работы, а не фиксированный договор: диапазон отражает разброс по сложности правок и числу согласований. Ставка по умолчанию 2 500 ₽ в час взята как условный ориентир, подставьте свою. Налоги, комиссии и скидки в расчёт не входят. Сроки зависят от скорости, с которой заказчик присылает материалы и согласует этапы.</p>
+</section>
+</main>
+<script>
+/* Этапы: [название, пояснение, часы от, часы до] */
+var STAGES=[
+ ["Анализ и структура","Разбор задачи, структура страницы, каркас текстов",5,8],
+ ["Дизайн-система и визуал","Палитра, типографика, светлая и тёмная темы, первый экран",14,20],
+ ["Вёрстка и адаптив","11 разделов, мобильная версия, доступность, меню, плавающая кнопка",24,34],
+ ["Анимации и заставка","Появление блоков, подсветка, параллакс, заставка при входе",10,14],
+ ["Приём заявок","Форма с маской телефона, согласие 152-ФЗ, отправка в Telegram и на e-mail, защита от спама, цель Метрики",10,14],
+ ["Калькулятор","Движок расчёта, настройка цен в файле, режим «только размеры»",8,12],
+ ["Галерея работ","Вкладки, пагинация, просмотр фото, слайдер «до и после»",7,10],
+ ["Фоновая музыка","Плавное включение, запоминание выбора, ленивая загрузка",3,5],
+ ["Логотип и анимация","Перерисовка в SVG по слоям, анимация, MP4, WebM, GIF, перелёт в шапку",14,20],
+ ["Перенос контента","Услуги, тексты, контакты, обработка 126 фото со старого сайта",7,10],
+ ["SEO и аналитика","Метаданные, Open Graph, микроразметка, карта сайта, Метрика",5,8],
+ ["Тестирование и правки","Проверка на устройствах и в обеих темах, скорость, доработки",8,12],
+ ["Запуск и документация","Репозиторий, публикация, инструкция по домену и ключам",5,8]
+];
+var fmt=function(n){return Math.round(n).toLocaleString("ru-RU").replace(/ /g," ")};
+function render(){
+  var r=Math.max(0,Number(document.getElementById("rate").value)||0), hmin=0,hmax=0, rows="";
+  STAGES.forEach(function(s){
+    hmin+=s[2];hmax+=s[3];
+    rows+="<tr><td>"+s[0]+"<small>"+s[1]+"</small></td><td class=\"n\">"+s[2]+"–"+s[3]+"</td><td class=\"n\">"+fmt(s[2]*r)+"–"+fmt(s[3]*r)+" ₽</td></tr>";
+  });
+  document.getElementById("rows").innerHTML=rows;
+  document.getElementById("t-h").textContent=hmin+"–"+hmax+" ч";
+  document.getElementById("t-p").textContent=fmt(hmin*r)+"–"+fmt(hmax*r)+" ₽";
+  document.getElementById("h-range").textContent=hmin+"–"+hmax+" ч";
+  document.getElementById("p-range").textContent=fmt(hmin*r)+"–"+fmt(hmax*r)+" ₽";
+}
+document.getElementById("rate").addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
