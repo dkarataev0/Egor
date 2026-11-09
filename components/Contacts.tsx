@@ -5,14 +5,16 @@ import { Icon } from "./Icons";
 
 export default function Contacts() {
   const { lat, lon } = company.geo;
-  const rows = [
-    { i: Icon.phone, t: "Телефон", v: company.phoneDisplay, h: `tel:${company.phone}` },
+  const mapAddress = company.address;
+  type Row = { i: (p: { className?: string }) => React.ReactElement; t: string; v: string; h?: string };
+  const rows = ([
+    ...company.phones.map((p, i) => ({ i: Icon.phone, t: i === 0 ? "Телефон" : "Ещё телефон", v: p.display, h: `tel:${p.tel}` })),
     { i: Icon.chat, t: "WhatsApp", v: "Написать в WhatsApp", h: company.whatsapp },
     { i: Icon.chat, t: "Telegram", v: "Написать в Telegram", h: company.telegram },
     { i: Icon.chat, t: "MAX", v: "Написать в MAX", h: company.max },
     { i: Icon.pin, t: "Адрес", v: company.address },
     { i: Icon.clock, t: "Часы работы", v: company.hours },
-  ].filter((r) => r.v && r.h !== ""); // пустые поля в company.json скрываются
+  ] as Row[]).filter((r) => r.v && r.h !== ""); // пустые поля в company.json скрываются
   return (
     <section id="contacts" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
       <Reveal>
@@ -41,8 +43,8 @@ export default function Contacts() {
         <Reveal delay={100}>
           <div className="clip-reveal h-80 overflow-hidden rounded-3xl border border-line lg:h-full lg:min-h-[28rem]">
             <iframe
-              title="Карта: Краснодар"
-              src={`https://yandex.ru/map-widget/v1/?ll=${lon}%2C${lat}&z=12&pt=${lon},${lat},pm2rdm`}
+              title={`Карта: ${mapAddress}`}
+              src={`https://yandex.ru/map-widget/v1/?ll=${lon}%2C${lat}&z=15&pt=${lon},${lat},pm2rdm`}
               loading="lazy"
               className="size-full border-0"
               referrerPolicy="no-referrer-when-downgrade"

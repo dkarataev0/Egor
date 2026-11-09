@@ -3,7 +3,8 @@ export type NumberField = { id: string; type: "number"; label: string; unit?: st
 export type SelectField = { id: string; type: "select"; label: string; default: string; options: { value: string; label: string; coef?: number; add?: number; addPerUnit?: number }[] };
 export type CheckField = { id: string; type: "checkbox"; label: string; default: boolean; add?: number; addPerUnit?: number; coef?: number };
 export type CalcField = NumberField | SelectField | CheckField;
-export type ServiceCalc = { quantity: "length" | "area" | "count"; unit: string; basePrice: number; minPrice?: number; fields: CalcField[] };
+// Если basePrice не задан (mode: "quote"), цена не считается: параметры только уходят менеджеру в заявке.
+export type ServiceCalc = { mode?: "quote"; quantity?: "length" | "area" | "count"; unit?: string; basePrice?: number; minPrice?: number; fields: CalcField[] };
 export type Values = Record<string, number | string | boolean>;
 
 export const defaults = (cfg: ServiceCalc): Values =>
@@ -20,7 +21,7 @@ const num = (v: unknown, f: NumberField) => {
  * количество: length (м), area (ширина или длина × высота, м²) или count.
  * Итог не ниже minPrice, округляется до 100 ₽.
  */
-export function compute(cfg: ServiceCalc, values: Values) {
+export function compute(cfg: ServiceCalc, values: Values): { price: number | null; qty: number; lines: { label: string; value: string }[] } {
   const by = (role: string) => {
     const f = cfg.fields.find((x): x is NumberField => x.type === "number" && x.role === role);
     return f ? num(values[f.id], f) : undefined;
@@ -47,6 +48,7 @@ export function compute(cfg: ServiceCalc, values: Values) {
       lines.push({ label: f.label, value: on ? "Да" : "Нет" });
     }
   }
+  if (cfg.mode === "quote" || cfg.basePrice === undefined) return { price: null, qty: Math.round(qty * 100) / 100, lines };
   const raw = cfg.basePrice * qty * coef + add;
   const price = Math.round(Math.max(cfg.minPrice ?? 0, raw) / 100) * 100;
   return { price, qty: Math.round(qty * 100) / 100, lines };

@@ -1,11 +1,67 @@
 [
   {
+    "id": "showers",
+    "title": "Душевые кабины и перегородки",
+    "description": "Стеклянные душевые ограждения по индивидуальным размерам: распашные, раздвижные, уголки и перегородки. Комфорт и приватность в ванной.",
+    "image": "/images/services/showers.webp",
+    "priceFrom": 18000,
+    "unit": "за изделие"
+  },
+  {
+    "id": "partitions-interior",
+    "title": "Межкомнатные перегородки",
+    "description": "Стеклянные перегородки для квартир и домов: зонируют пространство, пропускают свет и сохраняют приватность.",
+    "image": "/images/services/partitions-interior.webp"
+  },
+  {
+    "id": "partitions-office",
+    "title": "Офисные перегородки",
+    "description": "Функциональные и эргономичные конструкции для создания комфортных рабочих зон.",
+    "image": "/images/services/partitions-office.webp"
+  },
+  {
     "id": "railings",
     "title": "Стеклянные перила и ограждения",
-    "description": "Ограждения лестниц, балконов и террас из закалённого стекла: на стойках, без стоек, с точечным креплением.",
+    "description": "Ограждения лестниц, балконов и террас из закалённого стекла: прочные и эстетичные конструкции на стойках, без стоек, с точечным креплением.",
     "image": "/images/services/railings.webp",
     "priceFrom": 8500,
-    "unit": "за пог. м"
+    "unit": "за м²"
+  },
+  {
+    "id": "doors",
+    "title": "Двери из стекла",
+    "description": "Элегантные и функциональные решения, добавляющие лёгкость и стиль в любой интерьер.",
+    "image": "/images/services/doors.webp"
+  },
+  {
+    "id": "glass-walls",
+    "title": "Стены из стекла",
+    "description": "Стильные нестандартные изделия из стекла и зеркал для интерьеров премиум-класса.",
+    "image": "/images/services/glass-walls.webp"
+  },
+  {
+    "id": "partitions-sanitary",
+    "title": "Сантехнические перегородки",
+    "description": "Надёжные и стильные решения для зонирования пространства с повышенной влажностью.",
+    "image": "/images/services/partitions-sanitary.webp"
+  },
+  {
+    "id": "saunas",
+    "title": "Сауны и хаммамы",
+    "description": "Надёжные конструкции, обеспечивающие безопасность и эстетику в условиях повышенной влажности.",
+    "image": "/images/services/saunas.webp"
+  },
+  {
+    "id": "entrances",
+    "title": "Входные группы",
+    "description": "Стильные и функциональные конструкции, создающие первое впечатление о вашем пространстве.",
+    "image": "/images/services/entrances.webp"
+  },
+  {
+    "id": "mirrors",
+    "title": "Зеркала на заказ",
+    "description": "Стильные и функциональные зеркала по индивидуальным размерам для ваших пространств.",
+    "image": "/images/services/mirrors.webp"
   },
   {
     "id": "windows",
@@ -14,13 +70,5 @@
     "image": "/images/services/windows.webp",
     "priceFrom": 6500,
     "unit": "за м²"
-  },
-  {
-    "id": "showers",
-    "title": "Душевые кабины из стекла",
-    "description": "Стеклянные душевые ограждения по индивидуальным размерам: распашные, раздвижные, уголки и перегородки.",
-    "image": "/images/services/showers.webp",
-    "priceFrom": 18000,
-    "unit": "за изделие"
   }
 ]

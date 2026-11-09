@@ -12,6 +12,7 @@ export default function JsonLd() {
     url: SITE_URL,
     image: `${SITE_URL}/og.jpg`,
     telephone: company.phone,
+    ...(company.phones.length > 1 ? { contactPoint: company.phones.map((p) => ({ "@type": "ContactPoint", telephone: p.tel, contactType: "customer service", areaServed: "RU", availableLanguage: "ru" })) } : {}),
     ...(company.email ? { email: company.email } : {}),
     address: {
       "@type": "PostalAddress",
@@ -21,13 +22,10 @@ export default function JsonLd() {
     },
     geo: { "@type": "GeoCoordinates", latitude: company.geo.lat, longitude: company.geo.lon },
     areaServed: { "@type": "City", name: company.city },
-    openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
-    ],
     makesOffer: services.map((s) => ({
       "@type": "Offer",
       priceCurrency: "RUB",
-      price: s.priceFrom,
+      ...("priceFrom" in s && s.priceFrom ? { price: s.priceFrom } : {}),
       itemOffered: { "@type": "Service", name: s.title, description: s.description },
     })),
   };

@@ -34,7 +34,7 @@ export default function Hero() {
   return (
     <section ref={root} id="top" className="relative isolate flex min-h-[100svh] items-center overflow-hidden">
       <div className="absolute inset-0 -z-20" style={{ transform: "translate3d(0, calc(var(--py, 0) * 0.25px), 0) scale(1.08)" }}>
-        <Image src="/images/hero/hero.webp" alt="Стеклянная конструкция с бликами света" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/images/hero/hero.webp" alt="Остеклённая веранда частного дома, выполненная АртВитраж" fill priority sizes="100vw" className="object-cover" />
         {company.heroVideo && <HeroVideo src={company.heroVideo} />}
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true" style={{ transform: "translate3d(0, calc(var(--py, 0) * -0.12px), 0)", translate: "calc(var(--px, 0) * -36px) calc(var(--pz, 0) * -24px)" }}>
@@ -47,12 +47,12 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-scrim/80 via-scrim/45 to-transparent" />
       <div className="mx-auto w-full max-w-7xl px-4 pb-16 pt-28 sm:px-6">
         <h1 className="mt-4 max-w-3xl text-[clamp(2.25rem,6.5vw,4.75rem)] font-extrabold leading-[1.02] text-white">
-          {["Стекло, которое", "пропускает свет", "и держит форму"].map((t, i) => (
+          {["Стеклянные перегородки", "и двери на заказ", "в Краснодаре"].map((t, i) => (
             <span key={t} className="line-mask"><span style={{ "--i": i + 1 } as React.CSSProperties}>{t}</span></span>
           ))}
         </h1>
         <p className="rise mt-6 max-w-xl text-lg text-white/85" style={{ "--i": 2 } as React.CSSProperties}>
-          Перила, душевые кабины и окна из стекла под ключ в Краснодаре.
+          Собственное производство, замер, монтаж и гарантия.
         </p>
         <div className="rise mt-9 flex flex-col gap-3 sm:flex-row" style={{ "--i": 3 } as React.CSSProperties}>
           <a href="#calculator" data-magnetic className="btn btn-primary btn-glint">Рассчитать стоимость</a>

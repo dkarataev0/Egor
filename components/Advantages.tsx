@@ -8,7 +8,11 @@ export default function Advantages() {
     <section id="why" className="bg-surface py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <Reveal>
-          <SectionTitle className="mt-3 max-w-2xl">Шесть причин выбрать «АртВитраж»</SectionTitle>
+          <SectionTitle className="mt-3 max-w-2xl">О компании</SectionTitle>
+          <div className="mt-6 grid max-w-4xl gap-4 text-lg leading-relaxed text-ink-soft">
+            <p>Специализируемся на производстве и установке стеклянных конструкций в Краснодаре. Каждое изделие создаётся индивидуально, с учётом пожеланий клиента и точных размеров.</p>
+            <p>Поможем с выбором решения, предложим дизайн-проект, изготовим изделие и выполним монтаж в кратчайшие сроки. Нам доверяют частные заказчики и крупные бизнес-партнёры: наши работы можно встретить в жилых домах, офисах, торговых центрах, ресторанах и других объектах города.</p>
+          </div>
         </Reveal>
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {advantages.map((a, i) => {
