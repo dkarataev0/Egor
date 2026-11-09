@@ -64,7 +64,7 @@ export default function LeadForm({ serviceId, calc, onDone }: Props) {
         </svg>
         <p className="font-display text-3xl font-extrabold">Спасибо!</p>
         <p className="mt-3 text-lg text-ink-soft">Перезвоним в течение 15 минут.</p>
-        <p className="mt-1 text-sm text-ink-soft">В нерабочее время: {company.hours.toLowerCase()}, позвоним в начале рабочего дня.</p>
+        <p className="mt-1 text-sm text-ink-soft">{company.hours}.</p>
         {onDone && <button type="button" onClick={onDone} className="btn btn-primary mt-6">Закрыть</button>}
       </div>
     );

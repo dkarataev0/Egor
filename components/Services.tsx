@@ -29,8 +29,9 @@ export default function Services() {
                 <p className="mt-2 flex-1 text-ink-soft">{s.description}</p>
                 <div className="mt-6 flex items-center justify-between gap-3">
                   <p className="text-sm text-ink-soft">
-                    от <b className="font-display text-lg text-ink">{rub(s.priceFrom)}</b>
-                    {s.unit && <span> {s.unit}</span>}
+                    {"priceFrom" in s && s.priceFrom ? (
+                      <>от <b className="font-display text-lg text-ink">{rub(s.priceFrom)}</b>{"unit" in s && s.unit && <span> {s.unit}</span>}</>
+                    ) : "Цена по расчёту"}
                   </p>
                   <button onClick={() => open({ serviceId: s.id })} className="btn btn-outline !min-h-11">
                     Заказать

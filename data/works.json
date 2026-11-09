@@ -1,8 +1,884 @@
 [
-  { "id": 1, "service": "railings", "title": "Ограждение лестницы", "image": "/images/works/work-1.webp" },
-  { "id": 2, "service": "showers", "title": "Душевая кабина", "image": "/images/works/work-2.webp" },
-  { "id": 3, "service": "windows", "title": "Панорамное остекление", "image": "/images/works/work-3.webp" },
-  { "id": 4, "service": "railings", "title": "Ограждение террасы", "image": "/images/works/work-4.webp" },
-  { "id": 5, "service": "showers", "title": "Душевая перегородка", "image": "/images/works/work-5.webp" },
-  { "id": 6, "service": "windows", "title": "Остекление веранды", "image": "/images/works/work-6.webp" }
+  {
+    "id": 1,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/01.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 2,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/02.webp",
+    "w": 576,
+    "h": 1280
+  },
+  {
+    "id": 3,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/03.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 4,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/04.webp",
+    "w": 654,
+    "h": 1400
+  },
+  {
+    "id": 5,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/05.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 6,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/06.webp",
+    "w": 972,
+    "h": 1400
+  },
+  {
+    "id": 7,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/07.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 8,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/08.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 9,
+    "service": "partitions-interior",
+    "image": "/images/works/partitions-interior/09.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 10,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/01.webp",
+    "w": 1400,
+    "h": 1050
+  },
+  {
+    "id": 11,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/02.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 12,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/03.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 13,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/04.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 14,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/05.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 15,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/06.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 16,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/07.webp",
+    "w": 1280,
+    "h": 720
+  },
+  {
+    "id": 17,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/08.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 18,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/09.webp",
+    "w": 1400,
+    "h": 1050
+  },
+  {
+    "id": 19,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/10.webp",
+    "w": 1400,
+    "h": 1050
+  },
+  {
+    "id": 20,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/11.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 21,
+    "service": "partitions-office",
+    "image": "/images/works/partitions-office/12.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 22,
+    "service": "railings",
+    "image": "/images/works/railings/01.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 23,
+    "service": "railings",
+    "image": "/images/works/railings/02.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 24,
+    "service": "railings",
+    "image": "/images/works/railings/03.webp",
+    "w": 788,
+    "h": 1400
+  },
+  {
+    "id": 25,
+    "service": "railings",
+    "image": "/images/works/railings/04.webp",
+    "w": 788,
+    "h": 1400
+  },
+  {
+    "id": 26,
+    "service": "railings",
+    "image": "/images/works/railings/05.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 27,
+    "service": "railings",
+    "image": "/images/works/railings/06.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 28,
+    "service": "railings",
+    "image": "/images/works/railings/07.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 29,
+    "service": "railings",
+    "image": "/images/works/railings/08.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 30,
+    "service": "railings",
+    "image": "/images/works/railings/09.webp",
+    "w": 654,
+    "h": 1400
+  },
+  {
+    "id": 31,
+    "service": "railings",
+    "image": "/images/works/railings/10.webp",
+    "w": 654,
+    "h": 1400
+  },
+  {
+    "id": 32,
+    "service": "railings",
+    "image": "/images/works/railings/11.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 33,
+    "service": "railings",
+    "image": "/images/works/railings/12.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 34,
+    "service": "railings",
+    "image": "/images/works/railings/13.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 35,
+    "service": "railings",
+    "image": "/images/works/railings/14.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 36,
+    "service": "railings",
+    "image": "/images/works/railings/15.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 37,
+    "service": "railings",
+    "image": "/images/works/railings/16.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 38,
+    "service": "railings",
+    "image": "/images/works/railings/17.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 39,
+    "service": "railings",
+    "image": "/images/works/railings/18.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 40,
+    "service": "railings",
+    "image": "/images/works/railings/19.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 41,
+    "service": "railings",
+    "image": "/images/works/railings/20.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 42,
+    "service": "railings",
+    "image": "/images/works/railings/21.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 43,
+    "service": "saunas",
+    "image": "/images/works/saunas/01.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 44,
+    "service": "saunas",
+    "image": "/images/works/saunas/02.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 45,
+    "service": "saunas",
+    "image": "/images/works/saunas/03.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 46,
+    "service": "saunas",
+    "image": "/images/works/saunas/04.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 47,
+    "service": "saunas",
+    "image": "/images/works/saunas/05.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 48,
+    "service": "doors",
+    "image": "/images/works/doors/01.webp",
+    "w": 864,
+    "h": 1152
+  },
+  {
+    "id": 49,
+    "service": "doors",
+    "image": "/images/works/doors/02.webp",
+    "w": 864,
+    "h": 1152
+  },
+  {
+    "id": 50,
+    "service": "doors",
+    "image": "/images/works/doors/03.webp",
+    "w": 651,
+    "h": 1156
+  },
+  {
+    "id": 51,
+    "service": "doors",
+    "image": "/images/works/doors/04.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 52,
+    "service": "doors",
+    "image": "/images/works/doors/05.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 53,
+    "service": "doors",
+    "image": "/images/works/doors/06.webp",
+    "w": 576,
+    "h": 1280
+  },
+  {
+    "id": 54,
+    "service": "doors",
+    "image": "/images/works/doors/07.webp",
+    "w": 1400,
+    "h": 1050
+  },
+  {
+    "id": 55,
+    "service": "doors",
+    "image": "/images/works/doors/08.webp",
+    "w": 651,
+    "h": 1156
+  },
+  {
+    "id": 56,
+    "service": "doors",
+    "image": "/images/works/doors/09.webp",
+    "w": 576,
+    "h": 1280
+  },
+  {
+    "id": 57,
+    "service": "doors",
+    "image": "/images/works/doors/10.webp",
+    "w": 864,
+    "h": 1152
+  },
+  {
+    "id": 58,
+    "service": "doors",
+    "image": "/images/works/doors/11.webp",
+    "w": 651,
+    "h": 1156
+  },
+  {
+    "id": 59,
+    "service": "doors",
+    "image": "/images/works/doors/12.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 60,
+    "service": "doors",
+    "image": "/images/works/doors/13.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 61,
+    "service": "doors",
+    "image": "/images/works/doors/14.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 62,
+    "service": "doors",
+    "image": "/images/works/doors/15.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 63,
+    "service": "doors",
+    "image": "/images/works/doors/16.webp",
+    "w": 788,
+    "h": 1400
+  },
+  {
+    "id": 64,
+    "service": "doors",
+    "image": "/images/works/doors/17.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 65,
+    "service": "entrances",
+    "image": "/images/works/entrances/01.webp",
+    "w": 1400,
+    "h": 788
+  },
+  {
+    "id": 66,
+    "service": "entrances",
+    "image": "/images/works/entrances/02.webp",
+    "w": 1400,
+    "h": 788
+  },
+  {
+    "id": 67,
+    "service": "entrances",
+    "image": "/images/works/entrances/03.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 68,
+    "service": "entrances",
+    "image": "/images/works/entrances/04.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 69,
+    "service": "entrances",
+    "image": "/images/works/entrances/05.webp",
+    "w": 1156,
+    "h": 651
+  },
+  {
+    "id": 70,
+    "service": "entrances",
+    "image": "/images/works/entrances/06.webp",
+    "w": 960,
+    "h": 1280
+  },
+  {
+    "id": 71,
+    "service": "entrances",
+    "image": "/images/works/entrances/07.webp",
+    "w": 1400,
+    "h": 1050
+  },
+  {
+    "id": 72,
+    "service": "entrances",
+    "image": "/images/works/entrances/08.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 73,
+    "service": "entrances",
+    "image": "/images/works/entrances/09.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 74,
+    "service": "entrances",
+    "image": "/images/works/entrances/10.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 75,
+    "service": "showers",
+    "image": "/images/works/showers/01.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 76,
+    "service": "showers",
+    "image": "/images/works/showers/02.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 77,
+    "service": "showers",
+    "image": "/images/works/showers/03.webp",
+    "w": 546,
+    "h": 1152
+  },
+  {
+    "id": 78,
+    "service": "showers",
+    "image": "/images/works/showers/04.webp",
+    "w": 651,
+    "h": 1156
+  },
+  {
+    "id": 79,
+    "service": "showers",
+    "image": "/images/works/showers/05.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 80,
+    "service": "showers",
+    "image": "/images/works/showers/06.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 81,
+    "service": "showers",
+    "image": "/images/works/showers/07.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 82,
+    "service": "showers",
+    "image": "/images/works/showers/08.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 83,
+    "service": "showers",
+    "image": "/images/works/showers/09.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 84,
+    "service": "showers",
+    "image": "/images/works/showers/10.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 85,
+    "service": "showers",
+    "image": "/images/works/showers/11.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 86,
+    "service": "showers",
+    "image": "/images/works/showers/12.webp",
+    "w": 788,
+    "h": 1400
+  },
+  {
+    "id": 87,
+    "service": "showers",
+    "image": "/images/works/showers/13.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 88,
+    "service": "showers",
+    "image": "/images/works/showers/14.webp",
+    "w": 654,
+    "h": 1400
+  },
+  {
+    "id": 89,
+    "service": "showers",
+    "image": "/images/works/showers/15.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 90,
+    "service": "showers",
+    "image": "/images/works/showers/16.webp",
+    "w": 960,
+    "h": 1280
+  },
+  {
+    "id": 91,
+    "service": "showers",
+    "image": "/images/works/showers/17.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 92,
+    "service": "showers",
+    "image": "/images/works/showers/18.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 93,
+    "service": "showers",
+    "image": "/images/works/showers/19.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 94,
+    "service": "showers",
+    "image": "/images/works/showers/20.webp",
+    "w": 788,
+    "h": 1400
+  },
+  {
+    "id": 95,
+    "service": "showers",
+    "image": "/images/works/showers/21.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 96,
+    "service": "showers",
+    "image": "/images/works/showers/22.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 97,
+    "service": "showers",
+    "image": "/images/works/showers/23.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 98,
+    "service": "showers",
+    "image": "/images/works/showers/24.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 99,
+    "service": "showers",
+    "image": "/images/works/showers/25.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 100,
+    "service": "showers",
+    "image": "/images/works/showers/26.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 101,
+    "service": "showers",
+    "image": "/images/works/showers/27.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 102,
+    "service": "showers",
+    "image": "/images/works/showers/28.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 103,
+    "service": "showers",
+    "image": "/images/works/showers/29.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 104,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/01.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 105,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/02.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 106,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/03.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 107,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/04.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 108,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/05.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 109,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/06.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 110,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/07.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 111,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/08.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 112,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/09.webp",
+    "w": 1400,
+    "h": 1400
+  },
+  {
+    "id": 113,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/10.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 114,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/11.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 115,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/12.webp",
+    "w": 651,
+    "h": 1156
+  },
+  {
+    "id": 116,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/13.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 117,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/14.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 118,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/15.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 119,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/16.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 120,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/17.webp",
+    "w": 960,
+    "h": 1280
+  },
+  {
+    "id": 121,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/18.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 122,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/19.webp",
+    "w": 720,
+    "h": 1280
+  },
+  {
+    "id": 123,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/20.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 124,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/21.webp",
+    "w": 1050,
+    "h": 1400
+  },
+  {
+    "id": 125,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/22.webp",
+    "w": 867,
+    "h": 1156
+  },
+  {
+    "id": 126,
+    "service": "mirrors",
+    "image": "/images/works/mirrors/23.webp",
+    "w": 788,
+    "h": 1400
+  }
 ]

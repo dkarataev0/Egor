@@ -1,5 +1,5 @@
 {
-  "_todo": "TODO: ДЕМО-ЦЕНЫ и коэффициенты. Замените на реальные. См. README, раздел «Калькулятор».",
+  "_todo": "TODO: ДЕМО-ЦЕНЫ и коэффициенты у перил, окон и душевых. Остальные услуги работают в режиме «mode: quote»: считают только параметры и отправляют их менеджеру без цены. Чтобы включить расчёт, добавьте basePrice и поля как у перил. См. README.",
   "services": {
     "railings": {
       "quantity": "area",
@@ -306,6 +306,270 @@
           "label": "Монтаж",
           "default": true,
           "add": 4500
+        }
+      ]
+    },
+    "partitions-interior": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Длина перегородки",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
+        }
+      ]
+    },
+    "partitions-office": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Длина перегородки",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
+        }
+      ]
+    },
+    "partitions-sanitary": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Длина перегородки",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
+        }
+      ]
+    },
+    "glass-walls": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Длина стены",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
+        }
+      ]
+    },
+    "doors": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Ширина проёма",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота проёма",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
+        }
+      ]
+    },
+    "saunas": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Ширина",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
+        }
+      ]
+    },
+    "entrances": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Ширина",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
+        }
+      ]
+    },
+    "mirrors": {
+      "mode": "quote",
+      "fields": [
+        {
+          "id": "width",
+          "role": "width",
+          "type": "number",
+          "label": "Ширина",
+          "unit": "м",
+          "min": 0.3,
+          "max": 30,
+          "step": 0.1,
+          "default": 1.5
+        },
+        {
+          "id": "height",
+          "role": "height",
+          "type": "number",
+          "label": "Высота",
+          "unit": "м",
+          "min": 0.3,
+          "max": 6,
+          "step": 0.1,
+          "default": 2.2
+        },
+        {
+          "id": "install",
+          "type": "checkbox",
+          "label": "Нужен монтаж",
+          "default": true
         }
       ]
     }

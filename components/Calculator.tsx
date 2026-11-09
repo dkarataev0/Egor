@@ -43,6 +43,7 @@ export default function Calculator() {
   const values = all[id];
   const result = useMemo(() => (cfg ? compute(cfg, values) : null), [cfg, values]);
   const shownPrice = useTween(result?.price ?? 0);
+  const hasPrice = result?.price != null;
   if (!cfg || !result) return null;
 
   const set = (fid: string, v: number | string | boolean) => setAll((a) => ({ ...a, [id]: { ...a[id], [fid]: v } }));
@@ -50,8 +51,8 @@ export default function Calculator() {
 
   return (
     <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_22rem]">
-      <div className="glass rounded-3xl p-5 sm:p-8">
-        <div role="tablist" aria-label="Услуга для расчёта" className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-4">
+      <div className="glass min-w-0 rounded-3xl p-5 sm:p-8">
+        <div role="tablist" aria-label="Услуга для расчёта" className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-4 sm:flex-wrap sm:overflow-visible">
           {available.map((s) => (
             <button
               key={s.id} role="tab" aria-selected={s.id === id} onClick={() => setId(s.id)}
@@ -98,8 +99,17 @@ export default function Calculator() {
 
       <aside data-spotlight className="spotlight glass self-start rounded-3xl p-6 sm:p-8 lg:sticky lg:top-24" aria-live="polite">
         <p className="text-sm text-ink-soft">{title}</p>
-        <p className="mt-3 font-display text-4xl font-extrabold">от {rub(shownPrice)}</p>
-        <p className="mt-1 text-sm text-ink-soft">Предварительный расчёт. Точную цену назовём после замера.</p>
+        {hasPrice ? (
+          <>
+            <p className="mt-3 font-display text-4xl font-extrabold">от {rub(shownPrice)}</p>
+            <p className="mt-1 text-sm text-ink-soft">Предварительный расчёт. Точную цену назовём после замера.</p>
+          </>
+        ) : (
+          <>
+            <p className="mt-3 font-display text-2xl font-extrabold">Рассчитаем по вашим размерам</p>
+            <p className="mt-1 text-sm text-ink-soft">Укажите размеры и отправьте менеджеру. Назовём стоимость и закрепим её после замера.</p>
+          </>
+        )}
         <dl className="mt-5 grid gap-1.5 border-t border-line pt-4 text-sm">
           {result.lines.map((l) => (
             <div key={l.label} className="flex justify-between gap-4"><dt className="text-ink-soft">{l.label}</dt><dd className="text-right font-medium">{l.value}</dd></div>
@@ -107,9 +117,9 @@ export default function Calculator() {
         </dl>
         <button
           className="btn btn-primary mt-6 w-full"
-          onClick={() => open({ serviceId: id, calc: { service: id, price: result.price, lines: result.lines } })}
+          onClick={() => open({ serviceId: id, calc: { service: id, price: result.price ?? undefined, lines: result.lines } })}
         >
-          Отправить расчёт менеджеру
+          {hasPrice ? "Отправить расчёт менеджеру" : "Отправить размеры менеджеру"}
         </button>
       </aside>
     </div>
