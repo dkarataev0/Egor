@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Свободное пространство</title>
+<link rel="preload" as="image" href="stadium-sketch.webp">
+<style>
+@font-face{font-family:"SP Logo";src:url(data:font/woff2;base64,d09GMgABAAAAAATUAA8AAAAACQgAAAR8AAQaXgAAAAAAAAAAAAAAAAAAAAAAAAAAGigbIBwqBmA/U1RBVC4ARBEICocghhEBNgIkA1ALKgAEIAWEAgcgG0gHM6Pma3EB4L9MsI1lPdoPAcRlsUAQWOoJusgWXTTi1zD8YrVGPPQhp6H/zCLrPlQOIK/o/n3pgyeU63szySr5IM8lWZHo4IrVVVdJpagdfl0fqCVmZbyZD6Jv+mgKTXdXLwkI8ex3Pust28ikoJQF6f+6dy8ASmUq/+/LquFn4nL6Y9oCmtQlkoUBJ7IXtj2bw/4DTOwfqEFL21ZY51tggQSmmRsrZzoCpPndngiXRIAYAECI4BG45DK28V6OHPKQ1m07dyOMBYgCADA6lFGBaosbN3jaBDKQIIutXJBNBEDXaBDoNFaXATSQvggj5QkmDJ85jRM2wRbZA/8fQKBWZgMWQFuaKqAAgyCEESAFAXLQmSNHTRMAxQAqRjaBHgFAAQOkYDQfz1IPCBNGwSbZVFsUBTbBptjcqD+//vz88wkBAECQKOIBSAGgAkgCfiDtgXpAawBAMQiCoCgShb42YpHoEcNGIdX5ipiYpCQ+nOCSXNjP9bNdD9etr+/jQ36t/ddYxNtojbPfVddjvcrjYj3npEVOLsRU7eA1kpjF7ko5A4CGdKypDLrISvKMEhVvooE+FAvU95a5x1d144POOLVhVWTIHnJjyt8ist15OqfGP5F2gw84iQXWfhCcM1hboeC6R/aNPOxGz0Cs9aBHTLdJNuC6XRXRQ1UzEnQLf4JNdiauG654ZBB365Rwi9e1qxnK65rA2epqt3LZbUbydMVZl1vMbfVR7Sg+7LRa2XoHp0N7xNb4NVA4AgnrDVXizrzyMn/cgJu39Lhx83G13xoUEBCTclBEL9NOM6ErVWa2Staof0NkzJUbIOmg1IwdC8jzFMTeG1XHzmPyLReNx+/HJ1PGF+8vosydUpBnnBwnZSIpdbsTMsq4k+ugTCeUriD9ca2anqHXKh/S6R9rlfUi1J/zumHqwSVmDEpaLMBWh+ZvclnTM2xxdUDEy9vTau+qd/spRd2//rcHJ0hCEFN0B3/Es9Q9ThRb2dKjUXvkOn93XkXuc2l1aZeyFW44LBqp+veW/WkgnMt1O/I/lWxvll4UDtblWuI30wzNqrrxF3dvoUGEB1bYwgE4CIdgMz0M9JwEySC3TBXNGH2BzgU/FdaLLr9M/TX0IvgUjAc3nE8AmzXg+OH0mYHxjb+FC81LgGuv9wQ8vP9iL8n/R/Z8IBEIogAIHPKofYsAugxAEIdJ0YP0kbckawzN1FBPNtNM69NMs6knD2kmO4lvhLy340ym4kltHHyob8U7D7+24YQYRcBnvUGACFNmLTYCHIQlIYaDkhLHYcnQgDOSJYfvUoAekiQGyZFRegIxssxvbJ16RzM6Nj/Rj/RNodgQi4/y9gGUY3I2NZRFOSdGB0BGZ75qeqpvdGISRUrzpsYmxUwm0o+aNJ1mZEaHd147OooMAXh0ZGqS6TGob0oy/aIbINNDqQkugwVxJCNgdkqi04fOvfuGUAk/+BZ/v3cFyoOVQNgauTVzkxGIEjGsTDOy335GSEUgtgiwRHAsokwA/IF4oTBnBxsA) format("woff2");font-weight:400;font-display:block}
+:root{color-scheme:light}
+html,body{margin:0;background:#f7f7f5}
+.hero{min-height:100svh;display:grid;place-items:center;padding:48px 16px;box-sizing:border-box}
+.replay{position:fixed;right:16px;bottom:16px;font:500 13px/1 system-ui,sans-serif;letter-spacing:.04em;color:#111;background:transparent;border:1px solid #111;border-radius:999px;padding:10px 16px;cursor:pointer}
+.replay:hover{background:#111;color:#f7f7f5}
+/*
+  Анимированный логотип «Свободное пространство» для hero-блока.
+  Сценарий ~4 с, один раз при загрузке:
+    0–1.0 с   знак прорисовывается линией: проём, затем створка
+    1.0–1.6 с створка приоткрывается (rotateY + perspective)
+    1.4–2.4 с надпись проявляется маской слева направо, разрядка сужается
+    2.0–4.0 с скетч стадиона «рисуется пером»: крыши → конструкции → штриховка
+  Анимируются только transform, opacity и stroke-dashoffset.
+  Базовые стили = финальный кадр, поэтому без анимации (reduced motion) логотип сразу собран.
+  Единица --u = 1px исходного макета (ширина скетча в макете 1336px).
+*/
+
+.sp {
+  --ink: #111;
+  --paper: #f7f7f5;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  container-type: inline-size;
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  color: var(--ink);
+}
+
+.sp-stage {
+  --u: calc(100cqi / 1336);
+  --lu: var(--u);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Знак + надпись ---------- */
+.sp-lockup {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(22.5 * var(--lu));
+  margin-left: calc(460 * var(--u));
+  margin-bottom: calc(85.5 * var(--u));
+}
+
+.sp-mark {
+  position: relative;
+  flex: none;
+  width: calc(104 * var(--lu));
+  height: calc(292 * var(--lu));
+  perspective: calc(700 * var(--lu));
+}
+
+.sp-mark svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sp-mark path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 8;
+  stroke-linejoin: miter;
+  stroke-linecap: butt;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 0;
+}
+
+.sp-doorway path { animation: sp-draw 0.55s var(--ease) 0s both; }
+.sp-leaf path { animation: sp-draw 0.55s var(--ease) 0.45s both; }
+
+/* Петля створки — у левого косяка проёма (x = 551 в координатах знака) */
+.sp-leaf {
+  transform-origin: 49% 50%;
+  animation: sp-swing 0.6s var(--ease) 1s both;
+}
+
+.sp-words {
+  font-family: var(--sp-font, "SP Logo"), "Oswald", "Arial Narrow", sans-serif;
+  font-weight: 400;
+  font-size: calc(61.7 * var(--lu));
+  line-height: 1.152;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-top: calc(55 * var(--lu));
+}
+
+/* Маска-шторка: рамка едет слева направо, содержимое встречным сдвигом стоит на месте */
+.sp-line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.06em;
+  animation: sp-wipe-frame 0.9s var(--ease) var(--d, 1.4s) both;
+}
+
+.sp-line-in {
+  display: block;
+  animation: sp-wipe-content 0.9s var(--ease) var(--d, 1.4s) both;
+}
+
+/* Разрядка 0.3em → норма: каждая буква съезжает на i × Δ (только transform) */
+.sp-line-in > span {
+  display: inline-block;
+  animation: sp-track 0.9s var(--ease) var(--d, 1.4s) both;
+}
+
+/* ---------- Скетч стадиона ---------- */
+.sp-sketch {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sp-pen {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 0;
+  animation: sp-pen var(--t, 0.7s) var(--ease) var(--d, 2s) both;
+}
+
+/* Широкие проходы штриховки — с прямым краем, чтобы не было «капель» */
+.sp-pen--fill { stroke-linecap: butt; }
+
+/* ---------- Ключевые кадры (все «from» → базовое состояние = финал) ---------- */
+@keyframes sp-draw {
+  from { stroke-dashoffset: 1; opacity: 0; }
+  1% { opacity: 1; }
+}
+
+@keyframes sp-swing {
+  from { transform: rotateY(-68deg); }
+}
+
+@keyframes sp-wipe-frame {
+  from { transform: translateX(-100%); }
+}
+
+@keyframes sp-wipe-content {
+  from { transform: translateX(100%); }
+}
+
+@keyframes sp-track {
+  from { transform: translateX(calc(var(--i) * 0.11em)); }
+}
+
+@keyframes sp-pen {
+  from { stroke-dashoffset: 1; opacity: 0; }
+  1% { opacity: 1; }
+}
+
+/* ---------- Мобильная раскладка: знак с надписью крупнее и по центру ---------- */
+@container (max-width: 640px) {
+  .sp-stage { --lu: calc(100cqi / 760); }
+  .sp-lockup {
+    margin-left: 0;
+    justify-content: center;
+    margin-bottom: calc(56 * var(--lu));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sp *,
+  .sp *::before,
+  .sp *::after {
+    animation: none !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<main class="hero">
+<div class="sp" role="img" aria-label="Свободное пространство">
+  <div class="sp-stage" aria-hidden="true">
+    <div class="sp-lockup">
+      <div class="sp-mark">
+        <svg class="sp-doorway" viewBox="500 274 104 292"><path pathLength="1" d="M550.5 489.3V351.1L586.5 374.9V506.7"/></svg>
+        <svg class="sp-leaf" viewBox="500 274 104 292"><path pathLength="1" d="M588.3 332.3L515.5 283.9L516.5 553.9L555 520"/></svg>
+      </div>
+      <div class="sp-words">
+        <span class="sp-line" style="--d:1.4s"><span class="sp-line-in"><span style="--i:0">С</span><span style="--i:1">в</span><span style="--i:2">о</span><span style="--i:3">б</span><span style="--i:4">о</span><span style="--i:5">д</span><span style="--i:6">н</span><span style="--i:7">о</span><span style="--i:8">е</span></span></span>
+        <span class="sp-line" style="--d:1.5s"><span class="sp-line-in"><span style="--i:0">П</span><span style="--i:1">р</span><span style="--i:2">о</span><span style="--i:3">с</span><span style="--i:4">т</span><span style="--i:5">р</span><span style="--i:6">а</span><span style="--i:7">н</span><span style="--i:8">с</span><span style="--i:9">т</span><span style="--i:10">в</span><span style="--i:11">о</span></span></span>
+      </div>
+    </div>
+    <svg class="sp-sketch" viewBox="0 0 1100 333">
+      <defs>
+        <filter id="sp-soft" x="-5%" y="-10%" width="110%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+        <mask id="sp-pen-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1100" height="333"><g filter="url(#sp-soft)">
+          <path class="sp-pen" pathLength="1" stroke-width="46" style="--d:2.0s;--t:0.7s" d="M128 170C150 95 215 30 330 12C395 4 440 28 466 58"/>
+          <path class="sp-pen" pathLength="1" stroke-width="50" style="--d:2.1s;--t:0.8s" d="M285 212C350 120 440 30 545 12C640-2 790 40 862 155"/>
+          <path class="sp-pen" pathLength="1" stroke-width="44" style="--d:2.25s;--t:0.6s" d="M190 182C230 92 290 26 345 15"/>
+          <path class="sp-pen" pathLength="1" stroke-width="44" style="--d:2.45s;--t:0.6s" d="M455 212C560 150 670 80 765 58"/>
+          <path class="sp-pen" pathLength="1" stroke-width="44" style="--d:2.55s;--t:0.6s" d="M300 205C500 215 700 190 860 160"/>
+          <path class="sp-pen" pathLength="1" stroke-width="60" style="--d:2.6s;--t:0.5s" d="M22 205C55 150 110 138 150 168"/>
+          <path class="sp-pen" pathLength="1" stroke-width="70" style="--d:2.7s;--t:0.7s" d="M18 242C300 252 700 292 1052 284"/>
+          <path class="sp-pen" pathLength="1" stroke-width="70" style="--d:2.8s;--t:0.6s" d="M330 228C500 238 700 244 905 215"/>
+          <path class="sp-pen sp-pen--fill" pathLength="1" stroke-width="140" style="--d:3.0s;--t:0.95s" d="M0 60H1100"/>
+          <path class="sp-pen sp-pen--fill" pathLength="1" stroke-width="140" style="--d:3.05s;--t:0.95s" d="M0 170H1100"/>
+          <path class="sp-pen sp-pen--fill" pathLength="1" stroke-width="140" style="--d:3.1s;--t:0.9s" d="M0 280H1100"/>
+        </g></mask>
+      </defs>
+      <image href="stadium-sketch.webp" width="1100" height="333" mask="url(#sp-pen-mask)"/>
+    </svg>
+  </div>
+</div>
+</main>
+<button class="replay" type="button" onclick="var s=document.querySelector('.sp'),c=s.cloneNode(true);s.replaceWith(c)">Повторить</button>
+</body>
+</html>
